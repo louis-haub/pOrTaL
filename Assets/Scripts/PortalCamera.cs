@@ -5,8 +5,7 @@ using RenderPipeline = UnityEngine.Rendering.RenderPipelineManager;
 
 public class PortalCamera : MonoBehaviour
 {
-    [SerializeField]
-    private Portal[] portals = new Portal[2];
+    [SerializeField] private PortalReference portalReference;
 
     [SerializeField]
     private Camera portalCamera;
@@ -29,8 +28,8 @@ public class PortalCamera : MonoBehaviour
 
     private void Start()
     {
-        portals[0].Renderer.material.mainTexture = tempTexture1;
-        portals[1].Renderer.material.mainTexture = tempTexture2;
+        portalReference.portal1.Renderer.material.mainTexture = tempTexture1;
+        portalReference.portal2.Renderer.material.mainTexture = tempTexture2;
     }
 
     private void OnEnable()
@@ -45,26 +44,26 @@ public class PortalCamera : MonoBehaviour
 
     void UpdateCamera(ScriptableRenderContext SRC, Camera camera)
     {
-        if (!portals[0].IsPlaced || !portals[1].IsPlaced)
+        if (!portalReference.portal1.IsPlaced || !portalReference.portal2.IsPlaced)
         {
             return;
         }
 
-        if (portals[0].Renderer.isVisible)
+        if (portalReference.portal1.Renderer.isVisible)
         {
             portalCamera.targetTexture = tempTexture1;
             for (int i = iterations - 1; i >= 0; --i)
             {
-                RenderCamera(portals[0], portals[1], i, SRC);
+                RenderCamera(portalReference.portal1, portalReference.portal2, i, SRC);
             }
         }
 
-        if(portals[1].Renderer.isVisible)
+        if(portalReference.portal2.Renderer.isVisible)
         {
             portalCamera.targetTexture = tempTexture2;
             for (int i = iterations - 1; i >= 0; --i)
             {
-                RenderCamera(portals[1], portals[0], i, SRC);
+                RenderCamera(portalReference.portal2, portalReference.portal1, i, SRC);
             }
         }
     }
