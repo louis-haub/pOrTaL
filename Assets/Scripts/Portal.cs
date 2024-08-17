@@ -49,8 +49,8 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(originalPosition.x, originalPosition.y * Size, originalPosition.z);
-        transform.localScale = new Vector3(Size, Size, 1);
+        // transform.position = new Vector3(originalPosition.x, originalPosition.y * Size, originalPosition.z);
+        // transform.localScale = new Vector3(Size, Size, 1);
         
         Renderer.enabled = OtherPortal.IsPlaced;
 

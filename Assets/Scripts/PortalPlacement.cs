@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PortalPlacement : MonoBehaviour
 {
     [SerializeField]
-    private PortalPair portals;
+    private PortalReference portals;
 
     [SerializeField]
     private LayerMask layerMask;

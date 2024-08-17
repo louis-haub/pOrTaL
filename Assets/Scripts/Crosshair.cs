@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
     [SerializeField]
-    private PortalPair portalPair;
+    private PortalReference portals;
 
     [SerializeField]
     private Image inPortalImg;
@@ -16,7 +17,7 @@ public class Crosshair : MonoBehaviour
 
     private void Start()
     {
-        var portals = portalPair.Portals;
+        var portals = this.portals.Portals;
 
         inPortalImg.color = portals[0].PortalColour;
         outPortalImg.color = portals[1].PortalColour;
