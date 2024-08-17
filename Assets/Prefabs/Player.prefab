@@ -893,6 +893,8 @@ MonoBehaviour:
   maxForce: 1
   jumpForce: 4
   grounded: 0
+  scale: 1
+  _focusedObject: {fileID: 0}
 --- !u!114 &8369315066209963731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,6 +1041,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d6d7634f-65b3-41bc-9ea1-9967869604a0
     m_ActionName: Player/Shoot 2[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2453877539727416071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fb03b3d2-1892-4e91-8e1d-e69a08f52811
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1051,7 +1069,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9127945563150485610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6959a97642824b1daf293e47f4d31e32, type: 3}
   m_Name: 
@@ -1085,7 +1103,7 @@ MonoBehaviour:
   portals: {fileID: 3723966269425299010}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1536
   crosshair: {fileID: 6780944053899544549}
 --- !u!1001 &4976853100877637559
 PrefabInstance:
