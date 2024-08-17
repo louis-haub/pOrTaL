@@ -15,7 +15,11 @@ public class PortalPlacement : MonoBehaviour
     [SerializeField]
     private Crosshair crosshair;
 
-    public float scale;
+    public float scale = 1;
+    public float minScale;
+    public float maxScale;
+
+    public Transform banana;
 
     private void Update()
     {
@@ -25,6 +29,8 @@ public class PortalPlacement : MonoBehaviour
     {
         var scaleChange = ctx.ReadValue<Vector2>();
         scale += scaleChange.y / 3000f;
+        scale = Mathf.Clamp(scale, minScale, maxScale);
+        banana.localScale = Vector3.one * scale;
     }
 
     public void FirePortal1(InputAction.CallbackContext ctx)
@@ -91,7 +97,7 @@ public class PortalPlacement : MonoBehaviour
             var portalRotation = Quaternion.LookRotation(portalForward, portalUp);
             
             // Attempt to place the portal.
-            bool wasPlaced = portals.Portals[portalID].PlacePortal(hit.collider, hit.point, portalRotation);
+            bool wasPlaced = portals.Portals[portalID].PlacePortal(hit.collider, hit.point, portalRotation, scale);
 
             if(wasPlaced)
             {

@@ -82,7 +82,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    public bool PlacePortal(Collider wallCollider, Vector3 pos, Quaternion rot)
+    public bool PlacePortal(Collider wallCollider, Vector3 pos, Quaternion rot, float scale)
     {
         testTransform.position = pos;
         testTransform.rotation = rot;
@@ -96,6 +96,7 @@ public class Portal : MonoBehaviour
             this.wallCollider = wallCollider;
             transform.position = testTransform.position;
             transform.rotation = testTransform.rotation;
+            Size = scale;
             transform.position = new Vector3(transform.position.x, transform.position.y * Size, transform.position.z);
             transform.localScale = new Vector3(Size, Size, 1);
 
