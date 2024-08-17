@@ -18,6 +18,11 @@ public class Portal : MonoBehaviour
 
     [SerializeField]
     private Transform testTransform;
+    
+    public Transform floor;
+    
+    [field: SerializeField]
+    public float Size { get; private set; }
 
     private List<PortalableObject> portalObjects = new List<PortalableObject>();
     public bool IsPlaced { get; private set; } = true;
@@ -26,6 +31,7 @@ public class Portal : MonoBehaviour
     // Components.
     public Renderer Renderer { get; private set; }
     private new BoxCollider collider;
+    private Vector3 originalPosition;
 
     private void Awake()
     {
@@ -36,12 +42,17 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         outlineRenderer.material.SetColor("_OutlineColour", PortalColour);
-        
+        originalPosition = transform.position;
+
         // gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        // transform.position = new Vector3(originalPosition.x, originalPosition.y * Size, originalPosition.z);
+        transform.localScale.Set(Size, Size, 1);
+        Debug.Log("Scale is " + transform.localScale);
+        
         Renderer.enabled = OtherPortal.IsPlaced;
 
         for (int i = 0; i < portalObjects.Count; ++i)
