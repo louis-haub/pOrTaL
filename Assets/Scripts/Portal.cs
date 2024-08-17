@@ -31,7 +31,6 @@ public class Portal : MonoBehaviour
     // Components.
     public Renderer Renderer { get; private set; }
     private new BoxCollider collider;
-    private Vector3 originalPosition;
 
     private void Awake()
     {
@@ -42,16 +41,12 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         outlineRenderer.material.SetColor("_OutlineColour", PortalColour);
-        originalPosition = transform.position;
 
         gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        // transform.position = new Vector3(originalPosition.x, originalPosition.y * Size, originalPosition.z);
-        // transform.localScale = new Vector3(Size, Size, 1);
-        
         Renderer.enabled = OtherPortal.IsPlaced;
 
         for (int i = 0; i < portalObjects.Count; ++i)
@@ -92,7 +87,7 @@ public class Portal : MonoBehaviour
         testTransform.position = pos;
         testTransform.rotation = rot;
         testTransform.position -= testTransform.forward * 0.001f;
-
+        
         FixOverhangs();
         FixIntersects();
 
@@ -101,6 +96,8 @@ public class Portal : MonoBehaviour
             this.wallCollider = wallCollider;
             transform.position = testTransform.position;
             transform.rotation = testTransform.rotation;
+            transform.position = new Vector3(transform.position.x, transform.position.y * Size, transform.position.z);
+            transform.localScale = new Vector3(Size, Size, 1);
 
             gameObject.SetActive(true);
             IsPlaced = true;

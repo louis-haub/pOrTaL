@@ -15,8 +15,16 @@ public class PortalPlacement : MonoBehaviour
     [SerializeField]
     private Crosshair crosshair;
 
+    public float scale;
+
     private void Update()
     {
+    }
+
+    public void SetScale(InputAction.CallbackContext ctx)
+    {
+        var scaleChange = ctx.ReadValue<Vector2>();
+        scale += scaleChange.y / 3000f;
     }
 
     public void FirePortal1(InputAction.CallbackContext ctx)
