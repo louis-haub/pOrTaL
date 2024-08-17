@@ -25,7 +25,7 @@ public class Portal : MonoBehaviour
     public float Size { get; private set; }
 
     private List<PortalableObject> portalObjects = new List<PortalableObject>();
-    public bool IsPlaced { get; private set; } = true;
+    public bool IsPlaced { get; private set; } = false;
     private Collider wallCollider;
 
     // Components.
@@ -44,7 +44,7 @@ public class Portal : MonoBehaviour
         outlineRenderer.material.SetColor("_OutlineColour", PortalColour);
         originalPosition = transform.position;
 
-        // gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void Update()

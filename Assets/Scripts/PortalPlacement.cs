@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PortalPlacement : MonoBehaviour
 {
@@ -15,14 +17,16 @@ public class PortalPlacement : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            FirePortal(0, transform.position, transform.forward, 250.0f);
-        }
-        else if (Input.GetButtonDown("Fire2"))
-        {
-            FirePortal(1, transform.position, transform.forward, 250.0f);
-        }
+    }
+
+    public void FirePortal1(InputAction.CallbackContext ctx)
+    {
+        FirePortal(0, transform.position, transform.forward, 250.0f);
+    }
+    
+    public void FirePortal2(InputAction.CallbackContext ctx)
+    {
+        FirePortal(1, transform.position, transform.forward, 250.0f);
     }
 
     private void FirePortal(int portalID, Vector3 pos, Vector3 dir, float distance)
