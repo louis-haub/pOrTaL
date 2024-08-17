@@ -110,7 +110,7 @@ public class PlayerController : PortalableObject
         if (_pickedUpObject == null && _focusedObject != null)
         {
             Debug.Log("Pickup");
-            _focusedObject.Pickup();
+            _focusedObject.Pickup(camHolder.transform);
             _pickedUpObject = _focusedObject;
         }
         else if (_pickedUpObject != null)
@@ -134,10 +134,10 @@ public class PlayerController : PortalableObject
 
     void Update()
     {
-        if (_pickedUpObject != null)
-        {
-            _pickedUpObject.SnapToPlayer(gameObject.transform.position + (gameObject.transform.forward * 2 + gameObject.transform.right + Vector3.up));
-        }
+        // if (_pickedUpObject != null)
+        // {
+        //     _pickedUpObject.SnapToPlayer(gameObject.transform.position + (gameObject.transform.forward * 2 + gameObject.transform.right + Vector3.up));
+        // }
     }
     
     // Update is called once per frame

@@ -12,13 +12,19 @@ public class PickupObject : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("PickupObject");
     }
 
-    public void Pickup()
+    public void Pickup(Transform player)
     {
+        // attach Object to player camera
+        transform.SetParent(player, true);
+        rigidBody.constraints = RigidbodyConstraints.FreezePosition;
         rigidBody.useGravity = false;
     }
 
     public void Drop()
     {
+        // detatch Object form camera
+        transform.SetParent(null);
+        rigidBody.constraints = RigidbodyConstraints.None;
         rigidBody.useGravity = true;
     }
 
