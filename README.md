@@ -1,3 +1,5 @@
+This game is being created for the GMTK GameJam 2024
+
 # Setting
 You are in a Supermarket. You have been shrunk to a very small size. You also carry **The Banana To Scale**. 
 # Goal
