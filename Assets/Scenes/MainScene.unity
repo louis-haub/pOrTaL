@@ -466,7 +466,7 @@ MonoBehaviour:
   - {fileID: 398334193}
   - {fileID: 2131081765}
   portalCamera: {fileID: 177270987}
-  iterations: 3
+  iterations: 7
 --- !u!1 &358965536
 GameObject:
   m_ObjectHideFlags: 0
