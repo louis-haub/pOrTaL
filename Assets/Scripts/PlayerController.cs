@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,11 @@ public class PlayerController : PortalableObject
     private Vector2 move, look;
     private float lookRotation;
     public bool grounded;
+
+    public float scale;
+    // TODO: remove "angesehendes Objekt"
+    private PickupObject _focusedObject;
+    private PickupObject _pickedUpObject;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -30,9 +36,32 @@ public class PlayerController : PortalableObject
         Jump();
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        Interact();
+    }
+
     private void FixedUpdate()
     {
         Move();
+        
+        // add ray for picking up objects
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask("PickupObject");
+        // Does the ray intersect any objects excluding the player layer
+        if (_pickedUpObject == null)
+        {
+            if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
+            {
+                _focusedObject = hit.collider.GetComponent<PickupObject>();
+                Debug.Log($"Hit {_focusedObject.name}");
+            }
+            else
+            {
+                _focusedObject = null;
+                Debug.Log("Did not Hit");
+            }
+        }
     }
 
     void Jump()
@@ -72,6 +101,30 @@ public class PlayerController : PortalableObject
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
     }
 
+    void Interact()
+    {
+        Debug.Log($"Picked up Object: ," +
+                  $" focused Object: ");
+        Debug.Log(_pickedUpObject == null);
+        Debug.Log(_focusedObject != null);
+        if (_pickedUpObject == null && _focusedObject != null)
+        {
+            Debug.Log("Pickup");
+            _focusedObject.Pickup();
+            _pickedUpObject = _focusedObject;
+        }
+        else if (_pickedUpObject != null)
+        {
+            Debug.Log("Drop");
+            _pickedUpObject.Drop();
+            _pickedUpObject = null;
+        }
+        else
+        {
+            // Debug.Log("None");
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +132,14 @@ public class PlayerController : PortalableObject
 
     }
 
+    void Update()
+    {
+        if (_pickedUpObject != null)
+        {
+            _pickedUpObject.SnapToPlayer(gameObject.transform.position + (gameObject.transform.forward * 2 + gameObject.transform.right + Vector3.up));
+        }
+    }
+    
     // Update is called once per frame
     void LateUpdate()
     {
