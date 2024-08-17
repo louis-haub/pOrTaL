@@ -71,18 +71,20 @@ public class PortalCamera : MonoBehaviour
 
     private void RenderCamera(Portal inPortal, Portal outPortal, int iterationID, ScriptableRenderContext SRC)
     {
-        Transform inTransform = inPortal.transform;
-        Transform outTransform = outPortal.transform;
+        Transform inTransform = inPortal.floor.transform;
+        Transform outTransform = outPortal.floor.transform;
 
         Transform cameraTransform = portalCamera.transform;
         cameraTransform.position = transform.position;
         cameraTransform.rotation = transform.rotation;
+        float scaleFactor = inPortal.Size / outPortal.Size;
 
         for(int i = 0; i <= iterationID; ++i)
         {
             // Position the camera behind the other portal.
             Vector3 relativePos = inTransform.InverseTransformPoint(cameraTransform.position);
             relativePos = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativePos;
+            relativePos *= scaleFactor;
             cameraTransform.position = outTransform.TransformPoint(relativePos);
 
             // Rotate the camera to look through the other portal.
