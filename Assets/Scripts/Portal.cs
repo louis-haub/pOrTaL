@@ -70,6 +70,7 @@ public class Portal : MonoBehaviour
         var obj = other.GetComponent<PortalableObject>();
         if (obj != null)
         {
+            Debug.Log("enternere");
             portalObjects.Add(obj);
             obj.SetIsInPortal(this, OtherPortal, wallCollider);
         }

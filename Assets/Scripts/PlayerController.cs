@@ -4,7 +4,7 @@ using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : PortalableObject
 {
 
     public Rigidbody rb;
@@ -88,5 +88,11 @@ public class PlayerController : MonoBehaviour
     public void SetGrounded(bool state)
     {
         grounded = state;
+    }
+    
+    public override void Warp()
+    {
+        base.Warp();
+        // cameraMove.ResetTargetRotation();
     }
 }

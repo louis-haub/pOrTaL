@@ -11,7 +11,6 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Enter Ground");
         playerController.SetGrounded(true);
     }
     
@@ -22,7 +21,6 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Exit Ground");
         playerController.SetGrounded(false);
     }
     void OnTriggerStay(Collider other)
@@ -31,7 +29,6 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Stay Ground");
 
         playerController.SetGrounded(true);
     }
