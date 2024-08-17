@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="51.9576mm"
+   height="36.611717mm"
+   viewBox="0 0 51.9576 36.611717"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="5.5841522"
-     inkscape:cx="197.79189"
-     inkscape:cy="154.5445"
+     inkscape:zoom="3.9485919"
+     inkscape:cx="141.18957"
+     inkscape:cy="42.546813"
      inkscape:window-width="2256"
      inkscape:window-height="1372"
      inkscape:window-x="0"
@@ -38,7 +38,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-23.917182,-20.852614)">
     <path
        id="path3"
        style="fill:#ffef7c;stroke-width:0.264999;paint-order:markers fill stroke"
@@ -61,7 +62,18 @@
          id="textPath6"><tspan
            id="tspan6"
            style="font-size:5.64444px;stroke-width:0.265"
-           dx="65.291245"
+           dx="65.907234"
            dy="-0.94762224">FOR SCALE</tspan></textPath></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.8px;font-family:Roboto;-inkscape-font-specification:Roboto;fill:none;fill-opacity:1;stroke:none;stroke-width:0.264999;stroke-opacity:1;paint-order:markers fill stroke"
+       x="41.013519"
+       y="57.464333"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="font-size:50.8px;fill:none;stroke-width:0.265"
+         x="41.013519"
+         y="57.464333">2</tspan></text>
   </g>
 </svg>
