@@ -6,6 +6,9 @@ public class PickupObject : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody rigidBody;
+    public Material normalMat;
+    public Material highlighted;
+    
     private Transform parentTransform;
     private Transform targetTransform;
     private Transform joint;
@@ -16,6 +19,7 @@ public class PickupObject : MonoBehaviour
 
     void Start()
     {
+        this.normalMat = this.GetComponent<Renderer>().material;
         gameObject.layer = LayerMask.NameToLayer("PickupObject");
     }
 

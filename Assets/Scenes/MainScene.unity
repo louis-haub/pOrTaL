@@ -1731,6 +1731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 986808546}
+  normalMat: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  highlighted: {fileID: 2100000, guid: c017d2a48d3f6ef67967fd7f5ce4b77c, type: 2}
 --- !u!65 &986808548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2776,6 +2778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1943137463}
+  normalMat: {fileID: 0}
+  highlighted: {fileID: 2100000, guid: c017d2a48d3f6ef67967fd7f5ce4b77c, type: 2}
 --- !u!65 &1943137459
 BoxCollider:
   m_ObjectHideFlags: 0
