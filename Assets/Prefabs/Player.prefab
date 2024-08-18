@@ -894,7 +894,6 @@ MonoBehaviour:
   jumpForce: 4
   grounded: 0
   scale: 1
-  _focusedObject: {fileID: 0}
 --- !u!114 &8369315066209963731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,7 +1012,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 57753151642707064}
         m_TargetAssemblyTypeName: PortalPlacement, Assembly-CSharp
-        m_MethodName: FirePortal1
+        m_MethodName: PreviewPortal1
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1029,7 +1028,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 57753151642707064}
         m_TargetAssemblyTypeName: PortalPlacement, Assembly-CSharp
-        m_MethodName: FirePortal2
+        m_MethodName: PreviewPortal2
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1043,9 +1042,9 @@ MonoBehaviour:
     m_ActionName: Player/Shoot 2[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2453877539727416071}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnInteract
+      - m_Target: {fileID: 57753151642707064}
+        m_TargetAssemblyTypeName: PortalPlacement, Assembly-CSharp
+        m_MethodName: SetScale
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1055,8 +1054,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_ActionId: a077097d-b096-46d3-bb05-854928a53198
+    m_ActionName: Player/Scale[/Mouse/scroll/down]
+  - m_PersistentCalls:
+      m_Calls: []
     m_ActionId: fb03b3d2-1892-4e91-8e1d-e69a08f52811
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 57753151642707064}
+        m_TargetAssemblyTypeName: PortalPlacement, Assembly-CSharp
+        m_MethodName: PlacePortal1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a6b9eaea-5ac9-4baf-8b24-36b6d5601a6b
+    m_ActionName: Player/PlacePortal1[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 57753151642707064}
+        m_TargetAssemblyTypeName: PortalPlacement, Assembly-CSharp
+        m_MethodName: PlacePortal2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8fbb639c-9e29-4fe6-be1d-ad05484fb54b
+    m_ActionName: Player/PlacePortal2[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1105,6 +1140,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   crosshair: {fileID: 6780944053899544549}
+  scale: 1
+  minScale: 0.1
+  maxScale: 3
+  banana: {fileID: 4799690393486721116}
+  playerCamera: {fileID: 6964432625953156583}
 --- !u!1001 &4976853100877637559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1175,7 +1215,23 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1498568896614384272}
+      addedObject: {fileID: 2117648527973550564}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3372718033814737188}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3152828792511956128}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5419831852668119529}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7173048218032355340}
   m_SourcePrefab: {fileID: 100100000, guid: 1d182e5a4c3928a96a0615f693638f03, type: 3}
 --- !u!4 &4799690393486721116 stripped
 Transform:
@@ -1189,7 +1245,106 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4976853100877637559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1498568896614384272
+--- !u!33 &2117648527973550564
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318817505308957414}
+  m_Mesh: {fileID: 2534964839176971238, guid: 1d182e5a4c3928a96a0615f693638f03, type: 3}
+--- !u!64 &3372718033814737188
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318817505308957414}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 1d182e5a4c3928a96a0615f693638f03, type: 3}
+--- !u!23 &3152828792511956128
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318817505308957414}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5419831852668119529
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318817505308957414}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &7173048218032355340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1198,25 +1353,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5318817505308957414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 6959a97642824b1daf293e47f4d31e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: cc7b17b7afa56d84cb62ca8a90bae050,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}

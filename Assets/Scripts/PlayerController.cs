@@ -54,12 +54,10 @@ public class PlayerController : PortalableObject
             if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
             {
                 _focusedObject = hit.collider.GetComponent<PickupObject>();
-                Debug.Log($"Hit {_focusedObject.name}");
             }
             else
             {
                 _focusedObject = null;
-                Debug.Log("Did not Hit");
             }
         }
     }

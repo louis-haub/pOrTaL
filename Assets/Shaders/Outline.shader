@@ -7,7 +7,7 @@ Shader "Portals/Outline"
     }
     SubShader
     {
-        Tags 
+        Tags
 		{ 
 			"RenderType" = "Opaque" 
 			"Queue" = "Geometry+2"
