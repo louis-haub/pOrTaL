@@ -22,6 +22,7 @@ public class PlayerController : PortalableObject
     public float scale;
     // TODO: remove "angesehendes Objekt"
     private PickupObject _focusedObject;
+    private PickupObject _oldFocusedObject;
     private PickupObject _pickedUpObject;
     private SpringJoint joint;
 
@@ -62,15 +63,30 @@ public class PlayerController : PortalableObject
         // add ray for picking up objects
         RaycastHit hit;
         LayerMask mask = LayerMask.GetMask("PickupObject");
+        
         // Does the ray intersect any objects excluding the player layer
         if (_pickedUpObject == null)
         {
             if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
             {
                 _focusedObject = hit.collider.GetComponent<PickupObject>();
+
+                if (_oldFocusedObject && _oldFocusedObject.GetInstanceID() != _focusedObject.GetInstanceID())
+                {
+                    _oldFocusedObject.GetComponent<Renderer>().material = _oldFocusedObject.normalMat;
+                }
+                
+                _oldFocusedObject = hit.collider.GetComponent<PickupObject>();
+                
+                _focusedObject.GetComponent<Renderer>().material = _focusedObject.highlighted;
             }
             else
             {
+                if (_focusedObject)
+                {
+                    _focusedObject.GetComponent<Renderer>().material = _focusedObject.normalMat;
+                }
+
                 _focusedObject = null;
             }
         }
