@@ -2010,6 +2010,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1215602006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9127945563150485610, guid: 64b2758e4de43b74e84eb8dfca15469d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6473949519959315727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1229770690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,6 +2941,11 @@ PrefabInstance:
       propertyPath: pickupLocation
       value: 
       objectReference: {fileID: 2021050016}
+    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1215602006}
     - target: {fileID: 3723966269425299010, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: portal1
@@ -3002,9 +3013,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: [{targetCorrespondingSourceObject: {fileID: 2047260400978009908,
-          guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}, insertIndex: -1, addedObject: {
-          fileID: 2021050017}}]
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2047260400978009908, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2021050017}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}
 --- !u!1660057539 &9223372036854775807

@@ -188,7 +188,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4198102937143623136}
   m_Father: {fileID: 5166880359324317050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &6964432625953156583
@@ -587,6 +588,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &5757608134038883767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4198102937143623136}
+  m_Layer: 0
+  m_Name: PickupPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4198102937143623136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757608134038883767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2047260400978009908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6230901091030919858
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,11 +919,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4542376935316354543}
+  player: {fileID: 9127945563150485610}
   camHolder: {fileID: 2171773260994501980}
+  pickupLocation: {fileID: 5757608134038883767}
   speed: 4
   sensitivity: 0.1
+  density: 0
   maxForce: 1
   jumpForce: 4
+  previousScale: {x: 0, y: 0, z: 0}
   grounded: 0
   scale: 1
 --- !u!114 &8369315066209963731
@@ -1104,6 +1140,58 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8fbb639c-9e29-4fe6-be1d-ad05484fb54b
     m_ActionName: Player/PlacePortal2[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 57753151642707064}
+        m_TargetAssemblyTypeName: PortalPlacement, Assembly-CSharp
+        m_MethodName: SetScale
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a077097d-b096-46d3-bb05-854928a53198
+    m_ActionName: Player/Scale[/Mouse/scroll/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb03b3d2-1892-4e91-8e1d-e69a08f52811
+    m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2453877539727416071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGetBigger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cba6cef0-e87d-4437-ad0e-0b10e28a40ce
+    m_ActionName: Player/GetBigger[/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2453877539727416071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGetSmaller
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0f54558c-544c-4522-ae3b-134cef83418e
+    m_ActionName: Player/GetSmaller[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1157,6 +1245,7 @@ MonoBehaviour:
   maxScale: 3
   banana: {fileID: 4799690393486721116}
   playerCamera: {fileID: 6964432625953156583}
+  currentPreview: -1
 --- !u!1001 &4976853100877637559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1244,6 +1333,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7173048218032355340}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8961495980376799243}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d182e5a4c3928a96a0615f693638f03,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9050374463438596202}
   m_SourcePrefab: {fileID: 100100000, guid: 1d182e5a4c3928a96a0615f693638f03, type: 3}
 --- !u!4 &4799690393486721116 stripped
 Transform:
@@ -1357,6 +1454,40 @@ Rigidbody:
   m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7173048218032355340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318817505308957414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6959a97642824b1daf293e47f4d31e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &8961495980376799243
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318817505308957414}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 1d182e5a4c3928a96a0615f693638f03, type: 3}
+--- !u!114 &9050374463438596202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
