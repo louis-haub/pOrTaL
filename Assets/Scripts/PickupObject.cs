@@ -6,6 +6,7 @@ public class PickupObject : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody rigidBody;
+    
     void Start()
     {
         gameObject.layer = LayerMask.NameToLayer("PickupObject");

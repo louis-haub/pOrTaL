@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "GetBigger",
+                    "type": "Button",
+                    "id": "cba6cef0-e87d-4437-ad0e-0b10e28a40ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GetSmaller",
+                    "type": "Button",
+                    "id": "0f54558c-544c-4522-ae3b-134cef83418e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -338,6 +356,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlacePortal2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a464e5f-8375-4ce4-9b09-4950da78d8a5",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GetBigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "428a5a88-8972-4f21-929d-9649f021fa50",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GetSmaller",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
