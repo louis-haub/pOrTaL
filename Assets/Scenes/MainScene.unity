@@ -284,7 +284,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1731,8 +1731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 986808546}
-  normalMat: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  highlighted: {fileID: 2100000, guid: c017d2a48d3f6ef67967fd7f5ce4b77c, type: 2}
+  normalMat: {fileID: 0}
+  highlighted: {fileID: 0}
 --- !u!65 &986808548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2382,7 +2382,7 @@ Transform:
   m_GameObject: {fileID: 1482329688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01999998, z: -14}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2403,7 +2403,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2779,7 +2779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1943137463}
   normalMat: {fileID: 0}
-  highlighted: {fileID: 2100000, guid: c017d2a48d3f6ef67967fd7f5ce4b77c, type: 2}
+  highlighted: {fileID: 0}
 --- !u!65 &1943137459
 BoxCollider:
   m_ObjectHideFlags: 0
