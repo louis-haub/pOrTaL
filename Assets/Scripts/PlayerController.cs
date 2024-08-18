@@ -11,6 +11,7 @@ public class PlayerController : PortalableObject
     public Rigidbody rb;
 
     public GameObject camHolder;
+    public GameObject pickupLocation;
     public float speed, sensitivity, maxForce,jumpForce;
     private Vector2 move, look;
     private float lookRotation;
@@ -108,7 +109,7 @@ public class PlayerController : PortalableObject
         if (_pickedUpObject == null && _focusedObject != null)
         {
             Debug.Log("Pickup");
-            _focusedObject.Pickup(camHolder.transform);
+            _focusedObject.Pickup(camHolder.transform, pickupLocation.transform);
             _pickedUpObject = _focusedObject;
         }
         else if (_pickedUpObject != null)
