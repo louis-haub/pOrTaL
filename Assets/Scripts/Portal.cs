@@ -28,7 +28,7 @@ public class Portal : MonoBehaviour
     private Collider wallCollider;
 
     // Components.
-    public Renderer Renderer { get; private set; }
+    public Renderer Renderer;
     private new BoxCollider collider;
 
     private PortalPreview preview;
@@ -38,7 +38,6 @@ public class Portal : MonoBehaviour
     private void Awake()
     {
         collider = GetComponent<BoxCollider>();
-        Renderer = GetComponent<Renderer>();
         preview = GetComponentInChildren<PortalPreview>();
     }
 
@@ -51,7 +50,7 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        Renderer.enabled = OtherPortal.IsPlaced;
+        Renderer.enabled = IsPlaced && OtherPortal.IsPlaced;
 
         for (int i = 0; i < portalObjects.Count; ++i)
         {
@@ -69,7 +68,6 @@ public class Portal : MonoBehaviour
         var obj = other.GetComponent<PortalableObject>();
         if (obj != null)
         {
-            Debug.Log("enternere");
             portalObjects.Add(obj);
             obj.SetIsInPortal(this, OtherPortal, wallCollider);
         }
@@ -89,28 +87,32 @@ public class Portal : MonoBehaviour
     public void PreviewPortal(Collider wallCollider, Vector3 pos, Quaternion rot, float scale)
     {
         // set this to be a preview for now. in update we will check if we can change it to actually place it again
+        IsPlaced = false;
         preview.wallCollider = wallCollider;
+        preview.placementMask = placementMask;
+        preview.test = transform;
         preview.Init();
         outline.SetActive(false);
         
         this.wallCollider = wallCollider;
         transform.position = pos;
         transform.rotation = rot;
-        transform.position -= transform.forward * 0.001f;
+        // transform.position -= transform.forward * 0.001f;
         Size = scale;
-        // transform.position = new Vector3(transform.position.x, transform.position.y * Size, transform.position.z);
-        // transform.localScale = new Vector3(Size, Size, 1);
+        transform.position = new Vector3(transform.position.x, transform.position.y * Size, transform.position.z);
+        transform.localScale = new Vector3(Size, Size, 1);
 
         gameObject.SetActive(true);
     }
 
     public bool TryPlacingPortal()
     {
-        if (preview.valid)
+        if (preview.Valid)
         {
             IsPlaced = true;
             preview.Hide();
             outline.SetActive(true);
+            transform.position -= transform.forward * 0.001f;
             return true;
         }
         else

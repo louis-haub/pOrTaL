@@ -1138,7 +1138,7 @@ MonoBehaviour:
   portals: {fileID: 3723966269425299010}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   crosshair: {fileID: 6780944053899544549}
   scale: 1
   minScale: 0.1

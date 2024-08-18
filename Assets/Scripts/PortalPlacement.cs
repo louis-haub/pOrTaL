@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PortalPlacement : MonoBehaviour
@@ -19,6 +20,16 @@ public class PortalPlacement : MonoBehaviour
     public Transform banana;
 
     public Camera playerCamera;
+
+    public int currentPreview = -1;
+
+    private void Update()
+    {
+        if (currentPreview != -1)
+        {
+            PreviewPortal(currentPreview, transform.position, playerCamera.transform.forward, 250.0f);
+        }
+    }
 
     public void SetScale(InputAction.CallbackContext ctx)
     {
@@ -46,6 +57,7 @@ public class PortalPlacement : MonoBehaviour
 
     private void PreviewPortal(int portalID, Vector3 pos, Vector3 dir, float distance)
     {
+        currentPreview = portalID;
         Physics.Raycast(pos, dir, out var hit, distance, layerMask);
 
         if(hit.collider != null)
@@ -91,6 +103,7 @@ public class PortalPlacement : MonoBehaviour
     
     private void PlacePortal(int portalId)
     {
+        currentPreview = -1;
         var wasPlaced = portals.Portals[portalId].TryPlacingPortal();
         if(wasPlaced)
         {
