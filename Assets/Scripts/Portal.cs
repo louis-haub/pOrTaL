@@ -52,6 +52,8 @@ public class Portal : MonoBehaviour
     {
         Renderer.enabled = IsPlaced && OtherPortal.IsPlaced;
 
+        if (!(IsPlaced && OtherPortal.IsPlaced)) return;
+
         for (int i = 0; i < portalObjects.Count; ++i)
         {
             Vector3 objPos = transform.InverseTransformPoint(portalObjects[i].transform.position);
@@ -66,7 +68,7 @@ public class Portal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var obj = other.GetComponent<PortalableObject>();
-        if (obj != null)
+        if (obj != null && IsPlaced && OtherPortal.IsPlaced)
         {
             portalObjects.Add(obj);
             obj.SetIsInPortal(this, OtherPortal, wallCollider);
