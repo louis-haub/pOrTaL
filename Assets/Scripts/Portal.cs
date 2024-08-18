@@ -91,7 +91,10 @@ public class Portal : MonoBehaviour
         preview.wallCollider = wallCollider;
         preview.placementMask = placementMask;
         preview.test = transform;
-        preview.Init();
+        if (!IsPreview)
+        {
+            preview.Init();
+        }
         outline.SetActive(false);
         
         this.wallCollider = wallCollider;
@@ -103,10 +106,12 @@ public class Portal : MonoBehaviour
         transform.localScale = new Vector3(Size, Size, 1);
 
         gameObject.SetActive(true);
+        IsPreview = true;
     }
 
     public bool TryPlacingPortal()
     {
+        IsPreview = false;
         if (preview.Valid)
         {
             IsPlaced = true;
