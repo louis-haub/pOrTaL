@@ -1057,7 +1057,19 @@ MonoBehaviour:
     m_ActionId: a077097d-b096-46d3-bb05-854928a53198
     m_ActionName: Player/Scale[/Mouse/scroll/down]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2453877539727416071}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fb03b3d2-1892-4e91-8e1d-e69a08f52811
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
