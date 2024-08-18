@@ -8,6 +8,7 @@ public class PickupObject : MonoBehaviour
     public Rigidbody rigidBody;
     private Transform parentTransform;
     private Transform targetTransform;
+    private Transform joint;
 
     private Portal inPortal;
     private Portal outPortal;
@@ -18,15 +19,16 @@ public class PickupObject : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("PickupObject");
     }
 
-    public void Pickup(Transform player, Transform target)
+    public void Pickup(Transform player, Transform target, Transform joint)
     {
+        this.joint = joint;
         // attach Object to player camera
         transform.SetParent(player, true);
         parentTransform = player;
         targetTransform = target;
-        rigidBody.constraints = RigidbodyConstraints.FreezePosition;
         transform.position = target.position;
         rigidBody.useGravity = false;
+        rigidBody.drag = 10;
     }
 
     public void Drop()
@@ -37,6 +39,7 @@ public class PickupObject : MonoBehaviour
         transform.SetParent(null);
         rigidBody.constraints = RigidbodyConstraints.None;
         rigidBody.useGravity = true;
+        rigidBody.drag = 0;
     }
 
     public void SnapToPlayer(Vector3 position)
@@ -65,16 +68,18 @@ public class PickupObject : MonoBehaviour
                     relativePos = halfTurn * relativePos;
 
                     var newTarget = outTransform.TransformPoint(relativePos);
+                    joint.position = newTarget;
                     transform.position = newTarget;
                 }
                 else
                 {
+                    joint.position = targetTransform.position;
                     transform.position = targetTransform.position;
                 }
             }
             else
             {
-                transform.position = targetTransform.position;
+                joint.position = targetTransform.position;
             }
         }
     }

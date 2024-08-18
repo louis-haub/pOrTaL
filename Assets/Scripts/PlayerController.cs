@@ -23,6 +23,7 @@ public class PlayerController : PortalableObject
     // TODO: remove "angesehendes Objekt"
     private PickupObject _focusedObject;
     private PickupObject _pickedUpObject;
+    private SpringJoint joint;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -116,12 +117,14 @@ public class PlayerController : PortalableObject
     {
         if (_pickedUpObject == null && _focusedObject != null)
         {
-            _focusedObject.Pickup(camHolder.transform, pickupLocation.transform);
+            _focusedObject.Pickup(camHolder.transform, pickupLocation.transform, joint.transform);
             _pickedUpObject = _focusedObject;
+            joint.connectedBody = _pickedUpObject.GetComponent<Rigidbody>();
             _focusedObject = null;
         }
         else if (_pickedUpObject != null)
         {
+            joint.connectedBody = null;
             _pickedUpObject.Drop();
             _pickedUpObject = null;
         }
@@ -147,7 +150,7 @@ public class PlayerController : PortalableObject
         Cursor.lockState = CursorLockMode.Locked;
         SetObjectMass(rb.mass);
         previousScale = transform.localScale;
-
+        joint = GetComponentInChildren<SpringJoint>();
     }
 
     void SetObjectMass(float mass)
