@@ -153,6 +153,8 @@ public class PlayerController : PortalableObject
     public override void Warp()
     {
         base.Warp();
-        // cameraMove.ResetTargetRotation();
+        var angle = Vector3.Angle(transform.up, Vector3.up);
+        var normal = Vector3.Cross(transform.up, Vector3.up);
+        transform.RotateAround(transform.position, normal, angle);
     }
 }

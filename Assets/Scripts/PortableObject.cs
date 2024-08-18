@@ -12,8 +12,8 @@ public class PortalableObject : MonoBehaviour
 
     private int inPortalCount = 0;
     
-    private Portal inPortal;
-    private Portal outPortal;
+    protected Portal inPortal;
+    protected Portal outPortal;
 
     private new Rigidbody rigidbody;
     protected new Collider collider;
