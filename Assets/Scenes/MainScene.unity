@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 986808546}
   normalMat: {fileID: 0}
-  highlighted: {fileID: 0}
+  highlighted: {fileID: 2100000, guid: c017d2a48d3f6ef67967fd7f5ce4b77c, type: 2}
 --- !u!65 &986808548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2779,7 +2779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1943137463}
   normalMat: {fileID: 0}
-  highlighted: {fileID: 0}
+  highlighted: {fileID: 2100000, guid: c017d2a48d3f6ef67967fd7f5ce4b77c, type: 2}
 --- !u!65 &1943137459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3031,31 +3031,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 483104542668838252, guid: 64b2758e4de43b74e84eb8dfca15469d,
-        type: 3}
-      propertyPath: m_Spring
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 483104542668838252, guid: 64b2758e4de43b74e84eb8dfca15469d,
-        type: 3}
-      propertyPath: m_AutoConfigureConnectedAnchor
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438787188087562933, guid: 64b2758e4de43b74e84eb8dfca15469d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438787188087562933, guid: 64b2758e4de43b74e84eb8dfca15469d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438787188087562933, guid: 64b2758e4de43b74e84eb8dfca15469d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3723966269425299010, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: portal1
