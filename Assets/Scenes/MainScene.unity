@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 358965540}
   - component: {fileID: 358965539}
   - component: {fileID: 358965538}
+  - component: {fileID: 358965541}
   m_Layer: 9
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -422,6 +423,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358965536}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &358965541
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358965536}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &398334191
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +461,7 @@ GameObject:
   - component: {fileID: 398334192}
   - component: {fileID: 398334193}
   - component: {fileID: 398334194}
+  - component: {fileID: 398334195}
   m_Layer: 10
   m_Name: Portal1
   m_TagString: Portal
@@ -507,6 +536,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 4, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &398334195
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398334191}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &405904436
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +575,7 @@ GameObject:
   - component: {fileID: 405904440}
   - component: {fileID: 405904439}
   - component: {fileID: 405904438}
+  - component: {fileID: 405904441}
   m_Layer: 9
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -613,6 +670,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405904436}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &405904441
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405904436}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,12 +1599,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1055369294 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2047260400978009908, guid: 64b2758e4de43b74e84eb8dfca15469d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6473949519959315727}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006872656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1630,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2131081764}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1055369294 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2047260400978009908, guid: 64b2758e4de43b74e84eb8dfca15469d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6473949519959315727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1165711712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,6 +2388,7 @@ GameObject:
   - component: {fileID: 2131081764}
   - component: {fileID: 2131081766}
   - component: {fileID: 2131081765}
+  - component: {fileID: 2131081767}
   m_Layer: 10
   m_Name: Portal2
   m_TagString: Portal
@@ -2378,6 +2463,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 4, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2131081767
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131081763}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &6473949519959315727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,9 +2570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: [{targetCorrespondingSourceObject: {fileID: 2047260400978009908,
-          guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}, insertIndex: -1, addedObject: {
-          fileID: 2021050017}}]
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2047260400978009908, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2021050017}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}
 --- !u!1660057539 &9223372036854775807

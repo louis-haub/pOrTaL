@@ -55,7 +55,9 @@ public class PortalPreview : MonoBehaviour
 
     private bool IsFullyCovered()
     {
-        return testPoints.All(p => wallCollider.bounds.Contains(p.position));
+        var bounds = wallCollider.bounds;
+        bounds.extents += new Vector3(0.001f, 0.001f, 0.001f);
+        return testPoints.All(p => bounds.Contains(p.position));
     }
 
     private void OnTriggerEnter(Collider other)
