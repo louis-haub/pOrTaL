@@ -43,7 +43,7 @@ public class PortalPlacement : MonoBehaviour
     {
         if (ctx.started)
         {
-            PreviewPortal(0, transform.position, playerCamera.transform.forward, 250.0f);
+            PreviewPortal(0, playerCamera.transform.position, playerCamera.transform.forward, 250.0f);
         }
     }
     
@@ -51,14 +51,16 @@ public class PortalPlacement : MonoBehaviour
     {
         if (ctx.started)
         {
-            PreviewPortal(1, transform.position, playerCamera.transform.forward, 250.0f);
+            PreviewPortal(1, playerCamera.transform.position, playerCamera.transform.forward, 250.0f);
         }
     }
 
     private void PreviewPortal(int portalID, Vector3 pos, Vector3 dir, float distance)
     {
+        Debug.DrawRay(pos, dir);
         currentPreview = portalID;
-        Physics.Raycast(pos, dir, out var hit, distance, layerMask);
+        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Physics.Raycast(ray, out var hit, distance, layerMask);
 
         if(hit.collider != null)
         {
