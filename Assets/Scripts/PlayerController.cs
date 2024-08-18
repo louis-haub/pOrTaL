@@ -41,7 +41,7 @@ public class PlayerController : PortalableObject
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Interact();
+        if (context.started) Interact();
     }
 
     public void OnGetBigger(InputAction.CallbackContext context)
@@ -114,19 +114,14 @@ public class PlayerController : PortalableObject
 
     void Interact()
     {
-        Debug.Log($"Picked up Object: ," +
-                  $" focused Object: ");
-        Debug.Log(_pickedUpObject == null);
-        Debug.Log(_focusedObject != null);
         if (_pickedUpObject == null && _focusedObject != null)
         {
-            Debug.Log("Pickup");
             _focusedObject.Pickup(camHolder.transform, pickupLocation.transform);
             _pickedUpObject = _focusedObject;
+            _focusedObject = null;
         }
         else if (_pickedUpObject != null)
         {
-            Debug.Log("Drop");
             _pickedUpObject.Drop();
             _pickedUpObject = null;
         }
