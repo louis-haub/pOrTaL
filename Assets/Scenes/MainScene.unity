@@ -2073,6 +2073,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1219908140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9127945563150485610, guid: 64b2758e4de43b74e84eb8dfca15469d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6473949519959315727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1219908151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219908140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e31af0602858346b96cfdd1359b003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: event:/PortalGun
 --- !u!1 &1229770690
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,6 +3060,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 57753151642707064, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1219908151}
     - target: {fileID: 112883923321306258, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: m_Layer
@@ -3166,6 +3190,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: maxPickupDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2514426307676046690, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: m_Layer
@@ -3200,11 +3229,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
-        type: 3}
-      propertyPath: maxPickupDistance
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3723966269425299010, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
@@ -3449,7 +3473,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9127945563150485610, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1219908151}
   m_SourcePrefab: {fileID: 100100000, guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

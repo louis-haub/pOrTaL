@@ -23,6 +23,8 @@ public class PortalPlacement : MonoBehaviour
 
     public int currentPreview = -1;
 
+    public MusicController music;
+
     private void Update()
     {
         if (currentPreview != -1)
@@ -37,6 +39,8 @@ public class PortalPlacement : MonoBehaviour
         scale += scaleChange.y / 3000f;
         scale = Mathf.Clamp(scale, minScale, maxScale);
         banana.localScale = Vector3.one * scale;
+        float musicScale = Mathf.Clamp(scale, 0, 1);
+        music.setSize(musicScale);
     }
 
     public void PreviewPortal1(InputAction.CallbackContext ctx)
@@ -110,6 +114,7 @@ public class PortalPlacement : MonoBehaviour
         if(wasPlaced)
         {
             crosshair.SetPortalPlaced(portalId, true);
+            music.triggerGunAudio();
         }
     }
 }
