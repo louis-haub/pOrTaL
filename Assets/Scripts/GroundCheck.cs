@@ -23,13 +23,4 @@ public class GroundCheck : MonoBehaviour
         }
         playerController.SetGrounded(false);
     }
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject == playerController.gameObject)
-        {
-            return;
-        }
-
-        playerController.SetGrounded(true);
-    }
 }

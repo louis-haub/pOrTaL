@@ -9,6 +9,7 @@ public class AnimationHandler : MonoBehaviour
     private Animator _animator;
     private static readonly int Speed = Animator.StringToHash("speed");
     public float animationSpeedMultiplier = 0.1f;
+    private static readonly int Jumping = Animator.StringToHash("jumping");
 
     private void Awake()
     {
@@ -19,5 +20,15 @@ public class AnimationHandler : MonoBehaviour
     {
         _animator.SetFloat(Speed, Mathf.Sign(speed.y) * speed.magnitude * animationSpeedMultiplier);
         transform.forward = transform.parent.TransformDirection(speed.magnitude == 0 ? Vector3.forward : speed);
+    }
+
+    public void Jump()
+    {
+        _animator.SetBool(Jumping, true);
+    }
+
+    public void Land()
+    {
+        _animator.SetBool(Jumping, false);
     }
 }

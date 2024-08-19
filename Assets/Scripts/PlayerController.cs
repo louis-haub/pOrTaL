@@ -99,6 +99,7 @@ public class PlayerController : PortalableObject
         if (grounded)
         {
             jumpForces = Vector3.up * jumpForce;
+            animation.Jump();
         }
         rb.AddForce(jumpForces,ForceMode.VelocityChange);
     }
@@ -235,6 +236,10 @@ public class PlayerController : PortalableObject
 
     public void SetGrounded(bool state)
     {
+        if (state && !grounded)
+        {
+            animation.Land();
+        }
         grounded = state;
     }
     
