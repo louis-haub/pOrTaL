@@ -1696,6 +1696,7 @@ GameObject:
   - component: {fileID: 986808547}
   - component: {fileID: 986808546}
   - component: {fileID: 986808552}
+  - component: {fileID: 986808553}
   m_Layer: 0
   m_Name: BananaBoxx
   m_TagString: Untagged
@@ -1841,6 +1842,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6959a97642824b1daf293e47f4d31e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &986808553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986808545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cc47e865e7e516d98757d9e34fbfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1006872656
@@ -2085,6 +2098,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1219908140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9127945563150485610, guid: 64b2758e4de43b74e84eb8dfca15469d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6473949519959315727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1219908151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219908140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e31af0602858346b96cfdd1359b003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunInstance: event:/PortalGun
+  musicInstance: event:/Music
+  stepInstance: event:/Footsteps
+  playingFootsteps: 0
+  randomActionTime: 20
+--- !u!114 &1219908152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219908140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cc47e865e7e516d98757d9e34fbfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1229770690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,6 +2818,7 @@ GameObject:
   - component: {fileID: 1943137458}
   - component: {fileID: 1943137463}
   - component: {fileID: 1943137464}
+  - component: {fileID: 1943137465}
   m_Layer: 0
   m_Name: BananaBox
   m_TagString: Untagged
@@ -2917,6 +2966,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6959a97642824b1daf293e47f4d31e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1943137465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943137457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cc47e865e7e516d98757d9e34fbfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2131081763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3043,6 +3104,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 57753151642707064, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1219908151}
+    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1219908151}
     - target: {fileID: 3723966269425299010, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: portal1
@@ -3223,7 +3294,15 @@ PrefabInstance:
     - {fileID: 6230901091030919858, guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}
     - {fileID: 4681910955011106597, guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9127945563150485610, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1219908151}
+    - targetCorrespondingSourceObject: {fileID: 9127945563150485610, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1219908152}
   m_SourcePrefab: {fileID: 100100000, guid: 64b2758e4de43b74e84eb8dfca15469d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

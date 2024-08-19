@@ -30,6 +30,10 @@ public class PlayerController : PortalableObject
     private PickupObject _pickedUpObject;
     private SpringJoint joint;
     private AnimationHandler animation;
+    public MusicController music;
+    private float threshold = 0.1f;
+    
+
     
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -202,6 +206,17 @@ public class PlayerController : PortalableObject
         //Limit force
         Vector3.ClampMagnitude(velocityChange, maxForce);
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        //Check if movement is horizontal:
+        Debug.Log(move);
+        if(Mathf.Abs(move.x)> threshold || Mathf.Abs(move.y) > threshold)
+        {
+            music.playingFootsteps=true;
+        }
+        else
+        {
+            music.playingFootsteps = false;
+        }
+        
     }
 
     void Interact()
