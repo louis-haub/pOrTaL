@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -65,8 +66,21 @@ public class Portal : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        var obj = other.GetComponent<PortalableObject>();
+        if (obj != null && IsPlaced && OtherPortal.IsPlaced && !portalObjects.Contains(obj))
+        {
+            Debug.Log("Portal Stay Collider Triggered");
+
+            portalObjects.Add(obj);
+            obj.SetIsInPortal(this, OtherPortal, wallCollider);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Portal Collider Triggered");
         var obj = other.GetComponent<PortalableObject>();
         if (obj != null && IsPlaced && OtherPortal.IsPlaced)
         {
