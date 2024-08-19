@@ -13,6 +13,8 @@ public class PlayerController : PortalableObject
     public GameObject player;
     public GameObject camHolder;
     public GameObject pickupLocation;
+    public float maxPickupDistance;
+    
     public float speed, sensitivity, density, maxForce, jumpForce;
     private Vector2 move, look;
     public Vector3 previousScale;
@@ -143,9 +145,25 @@ public class PlayerController : PortalableObject
                     _focusedObject = null;
                 }
             }
+        }else if ((this.joint.transform.position - _pickedUpObject.transform.position).magnitude >
+                  this.maxPickupDistance)
+        {
+            // Debug.Log((this.joint.transform.position - _pickedUpObject.transform.position).magnitude);
+            // Debug.Log(this.joint.transform.position);
+            // Debug.Log(this._pickedUpObject.transform.position);   
+            dropPickedUpObject();
         }
     }
 
+    private void dropPickedUpObject()
+    {
+        
+        joint.connectedBody = null;
+        _pickedUpObject.Drop();
+        _pickedUpObject.GetComponent<Renderer>().material = _pickedUpObject.normalMat;
+        _pickedUpObject = null;
+
+    }
     void Jump()
     {
         Vector3 jumpForces = Vector3.zero;
@@ -196,9 +214,7 @@ public class PlayerController : PortalableObject
         }
         else if (_pickedUpObject != null)
         {
-            joint.connectedBody = null;
-            _pickedUpObject.Drop();
-            _pickedUpObject = null;
+            dropPickedUpObject();
         }
         else
         {
