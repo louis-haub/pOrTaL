@@ -24,7 +24,6 @@ public class PortalableObject : MonoBehaviour
     {
         cloneObject = new GameObject();
         cloneObject.SetActive(false);
-        gameObject.name = "Cloned Object";
         var meshFilter = cloneObject.AddComponent<MeshFilter>();
         var meshRenderer = cloneObject.AddComponent<MeshRenderer>();
 
@@ -34,6 +33,11 @@ public class PortalableObject : MonoBehaviour
 
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+    }
+
+    protected virtual bool UseClone()
+    {
+        return true;
     }
 
     private void LateUpdate()
@@ -71,7 +75,10 @@ public class PortalableObject : MonoBehaviour
 
         Physics.IgnoreCollision(collider, wallCollider);
 
-        cloneObject.SetActive(true);
+        if (UseClone())
+        {
+            cloneObject.SetActive(true);
+        }
 
         ++inPortalCount;
     }
