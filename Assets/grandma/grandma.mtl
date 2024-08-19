@@ -1,62 +1,68 @@
-# Exported from Fuse 1.3.0
-
-newmtl Shoes
-illum 4
-Kd 1.00 1.00 1.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 1.00 1.00 1.00
-map_Kd grandma_Shoes_diffuse.png
-map_Ks grandma_Shoes_specular.png
-bump grandma_Shoes_normal.png
-map_Ns grandma_Shoes_gloss.png
-
-newmtl Top
-illum 4
-Kd 1.00 1.00 1.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 1.00 1.00 1.00
-map_Kd grandma_Top_diffuse.png
-map_Ks grandma_Top_specular.png
-bump grandma_Top_normal.png
-map_Ns grandma_Top_gloss.png
-
-newmtl Hair
-illum 4
-Kd 1.00 1.00 1.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 1.00 1.00 1.00
-map_Kd grandma_Hair_diffuse.png
-map_Ks grandma_Hair_specular.png
-bump grandma_Hair_normal.png
-map_Ns grandma_Hair_gloss.png
+# Blender 4.2.0 MTL File: 'None'
+# www.blender.org
 
 newmtl Body
-illum 4
-Kd 1.00 1.00 1.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 1.00 1.00 1.00
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
 map_Kd grandma_Body_diffuse.png
 map_Ks grandma_Body_specular.png
-bump grandma_Body_normal.png
 map_Ns grandma_Body_gloss.png
+map_Bump grandma_Body_normal.png
 
 newmtl Bottom
-illum 4
-Kd 1.00 1.00 1.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 1.00 1.00 1.00
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
 map_Kd grandma_Bottom_diffuse.png
 map_Ks grandma_Bottom_specular.png
-bump grandma_Bottom_normal.png
 map_Ns grandma_Bottom_gloss.png
+map_Bump grandma_Bottom_normal.png
 
+newmtl Hair
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd grandma_Hair_diffuse.png
+map_Ks grandma_Hair_specular.png
+map_Ns grandma_Hair_gloss.png
+map_Bump grandma_Hair_normal.png
+
+newmtl Head
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd grandma_Body_diffuse.png
+map_Ks grandma_Body_specular.png
+map_Ns grandma_Body_gloss.png
+map_Bump grandma_Body_normal.png
+
+newmtl Shoes
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd grandma_Shoes_diffuse.png
+map_Ks grandma_Shoes_specular.png
+map_Ns grandma_Shoes_gloss.png
+map_Bump grandma_Shoes_normal.png
+
+newmtl Top
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd grandma_Top_diffuse.png
+map_Ks grandma_Top_specular.png
+map_Ns grandma_Top_gloss.png
+map_Bump grandma_Top_normal.png
