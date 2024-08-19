@@ -107,9 +107,6 @@ public class PortalPlacement : MonoBehaviour
     {
         currentPreview = -1;
         var wasPlaced = portals.Portals[portalId].TryPlacingPortal();
-        if(wasPlaced)
-        {
-            crosshair.SetPortalPlaced(portalId, true);
-        }
+        crosshair.UpdatePortalColors();
     }
 }

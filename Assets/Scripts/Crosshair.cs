@@ -9,32 +9,34 @@ public class Crosshair : MonoBehaviour
     [SerializeField]
     private PortalReference portals;
 
-    [SerializeField]
-    private Image inPortalImg;
+    public Sprite nonEnabled;
+    public Sprite blueEnabled;
+    public Sprite yellowEnabled;
+    public Sprite bothEnabled;
 
-    [SerializeField]
-    private Image outPortalImg;
+    public Image img;
 
     private void Start()
     {
-        var portals = this.portals.Portals;
-
-        inPortalImg.color = portals[0].PortalColour;
-        outPortalImg.color = portals[1].PortalColour;
-
-        inPortalImg.gameObject.SetActive(false);
-        outPortalImg.gameObject.SetActive(false);
+        UpdatePortalColors();
     }
 
-    public void SetPortalPlaced(int portalID, bool isPlaced)
+    public void UpdatePortalColors()
     {
-        if(portalID == 0)
+        Sprite sprite = nonEnabled;
+        if (portals.Portals[0].IsPlaced && portals.Portals[1].IsPlaced)
         {
-            inPortalImg.gameObject.SetActive(isPlaced);
+            sprite = bothEnabled;
         }
-        else
+        else if (portals.Portals[0].IsPlaced)
         {
-            outPortalImg.gameObject.SetActive(isPlaced);
+            sprite = yellowEnabled;
         }
+        else if (portals.Portals[1].IsPlaced)
+        {
+            sprite = blueEnabled;
+        }
+
+        img.sprite = sprite;
     }
 }
