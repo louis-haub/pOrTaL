@@ -28,6 +28,9 @@
 .vsconfig
 .vscode
 
+
+# Assest to ignore
+
 # Idea
 .idea
 
