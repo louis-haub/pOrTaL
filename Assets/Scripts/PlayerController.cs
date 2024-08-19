@@ -25,7 +25,8 @@ public class PlayerController : PortalableObject
     private PickupObject _oldFocusedObject;
     private PickupObject _pickedUpObject;
     private SpringJoint joint;
-
+    private AnimationHandler animation;
+    
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -120,8 +121,9 @@ public class PlayerController : PortalableObject
         Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
         targetVelocity *= speed;
 
+        animation.Move(targetVelocity);
         targetVelocity = transform.TransformDirection(targetVelocity);
-
+        
         Vector3 velocityChange = (targetVelocity - currentVelocity);
         velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
         //Limit force
@@ -167,6 +169,7 @@ public class PlayerController : PortalableObject
         SetObjectMass(rb.mass);
         previousScale = transform.localScale;
         joint = GetComponentInChildren<SpringJoint>();
+        animation = GetComponentInChildren<AnimationHandler>();
     }
 
     void SetObjectMass(float mass)
