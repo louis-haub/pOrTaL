@@ -20,6 +20,7 @@ public class PlayerController : PortalableObject
     public Vector3 previousScale;
     private float lookRotation;
     public bool grounded;
+    public Transform groundTest;
 
     public float scale;
     public float pickupDistance;
@@ -224,12 +225,12 @@ public class PlayerController : PortalableObject
 
     void Smaller()
     {
-        transform.localScale *= 9f / 10f;
+        Scale(9f / 10f);
     }
 
     void Bigger()
     {
-        transform.localScale *= 10f / 9f;
+        Scale(10f / 9f);
     }
 
     // Start is called before the first frame update
@@ -319,7 +320,16 @@ public class PlayerController : PortalableObject
         var normal = Vector3.Cross(transform.up, Vector3.up);
         transform.RotateAround(transform.position, normal, angle);
         var scaling = inPortal.Size / outPortal.Size;
-        transform.localScale *= scaling;
+        Scale(scaling);
+    }
+
+    private void Scale(float scale)
+    {
+        var oldGroundPos = groundTest.localPosition;
+        transform.localScale *= scale;
+
+        groundTest.localScale *= 1f / scale;
+        groundTest.localPosition = oldGroundPos;
     }
 
     protected override bool UseClone()
