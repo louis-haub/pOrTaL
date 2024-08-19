@@ -1016,6 +1016,7 @@ MonoBehaviour:
   previousScale: {x: 0, y: 0, z: 0}
   grounded: 0
   scale: 1
+  pickupDistance: 4
 --- !u!114 &8369315066209963731
 MonoBehaviour:
   m_ObjectHideFlags: 0

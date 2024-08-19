@@ -30,7 +30,6 @@ public class PickupObject : MonoBehaviour
         transform.SetParent(player, true);
         parentTransform = player;
         targetTransform = target;
-        transform.position = target.position;
         rigidBody.useGravity = false;
         rigidBody.drag = 10;
     }
