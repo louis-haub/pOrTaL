@@ -17,7 +17,7 @@ public class PortalPlacement : MonoBehaviour
     public float minScale;
     public float maxScale;
 
-    public Transform banana;
+    public Banana banana;
 
     public Camera playerCamera;
 
@@ -36,7 +36,7 @@ public class PortalPlacement : MonoBehaviour
         var scaleChange = ctx.ReadValue<Vector2>();
         scale += scaleChange.y / 3000f;
         scale = Mathf.Clamp(scale, minScale, maxScale);
-        banana.localScale = Vector3.one * scale;
+        banana.SetScale(scale);
     }
 
     public void PreviewPortal1(InputAction.CallbackContext ctx)
