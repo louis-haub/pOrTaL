@@ -104,7 +104,7 @@ public class Portal : MonoBehaviour
         transform.rotation = rot;
         // transform.position -= transform.forward * 0.001f;
         Size = scale;
-        transform.position = new Vector3(transform.position.x, transform.position.y * Size, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         transform.localScale = new Vector3(Size, Size, 1);
 
         gameObject.SetActive(true);
