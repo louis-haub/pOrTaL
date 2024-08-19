@@ -321,4 +321,9 @@ public class PlayerController : PortalableObject
         var scaling = inPortal.Size / outPortal.Size;
         transform.localScale *= scaling;
     }
+
+    protected override bool UseClone()
+    {
+        return false;
+    }
 }

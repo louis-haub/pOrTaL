@@ -17,7 +17,7 @@ public class PortalPlacement : MonoBehaviour
     public float minScale;
     public float maxScale;
 
-    public Transform banana;
+    public Banana banana;
 
     public Camera playerCamera;
 
