@@ -2106,6 +2106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunInstance: event:/PortalGun
   musicInstance: event:/Music
+  stepInstance: event:/Footsteps
+  playingFootsteps: 0
   randomActionTime: 20
 --- !u!114 &1219908152
 MonoBehaviour:
@@ -3091,6 +3093,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 57753151642707064, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1219908151}
+    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: music
       value: 

@@ -43,10 +43,10 @@ MonoBehaviour:
   Path: Assets/Audio/Portal/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638596971200468112
+  lastModified: 638597003005135920
   FileSizes:
   - Name: Desktop
-    Value: 6544800
+    Value: 6574784
   Exists: 1
 --- !u!114 &-8088421435681375716
 MonoBehaviour:
@@ -91,10 +91,10 @@ MonoBehaviour:
   Path: Assets/Audio/Portal/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638596971200578063
+  lastModified: 638597003005256007
   FileSizes:
   - Name: Desktop
-    Value: 1084
+    Value: 1124
   Exists: 1
 --- !u!114 &-5553780938174916365
 MonoBehaviour:
@@ -167,13 +167,41 @@ MonoBehaviour:
   - {fileID: -8922186581735982510}
   - {fileID: 6564216766145313081}
   - {fileID: -5553780938174916365}
+  - {fileID: 1517958941288480751}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8601686375173743438}
   StringsBanks:
   - {fileID: -6067335892701138172}
-  cacheTime: 638596971200578063
+  cacheTime: 638597003005256007
   cacheVersion: 131618
+--- !u!114 &1517958941288480751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Footsteps
+  Guid:
+    Data1: 317325124
+    Data2: 1090766883
+    Data3: -333632086
+    Data4: -1779314839
+  Banks:
+  - {fileID: -8601686375173743438}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 625
 --- !u!114 &6564216766145313081
 MonoBehaviour:
   m_ObjectHideFlags: 0
