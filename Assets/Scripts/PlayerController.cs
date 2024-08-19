@@ -20,7 +20,8 @@ public class PlayerController : PortalableObject
     public bool grounded;
 
     public float scale;
-    // TODO: remove "angesehendes Objekt"
+    public float pickupDistance;
+    private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
     private PickupObject _focusedObject;
     private PickupObject _oldFocusedObject;
     private PickupObject _pickedUpObject;
@@ -60,35 +61,87 @@ public class PlayerController : PortalableObject
     private void FixedUpdate()
     {
         Move();
-        
+
+        RaycastHit objectHit;
         // add ray for picking up objects
-        RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("PickupObject");
-        
+        LayerMask objectMask = LayerMask.GetMask("PickupObject");
         // Does the ray intersect any objects excluding the player layer
         if (_pickedUpObject == null)
         {
-            if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
+            // check if portal focused
+            if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward),
+                    out var portalHit, pickupDistance, LayerMask.GetMask("PortalSurface")))
             {
-                _focusedObject = hit.collider.GetComponent<PickupObject>();
+                var distance = portalHit.distance;
+                inPortal = portalHit.collider.GetComponentInParent<Portal>();
+                outPortal = inPortal.OtherPortal;
+                var inTransform = inPortal.transform;
+                var outTransform = outPortal.transform;
+                Vector3 relativeDir =
+                    inTransform.InverseTransformDirection(camHolder.transform.TransformDirection(Vector3.forward));
+                Vector3 relativePos = inTransform.InverseTransformPoint(portalHit.point);
+                relativePos = halfTurn * relativePos;
+                relativeDir = halfTurn * relativeDir;
+                var newOrigin = outTransform.TransformPoint(relativePos);
+                var newDirection = outTransform.TransformDirection(relativeDir);
 
-                if (_oldFocusedObject && _oldFocusedObject.GetInstanceID() != _focusedObject.GetInstanceID())
+                // cast ray with remaining distance from other portal
+                if (Physics.Raycast(newOrigin, newDirection, out objectHit, pickupDistance - distance, objectMask))
                 {
-                    _oldFocusedObject.GetComponent<Renderer>().material = _oldFocusedObject.normalMat;
+                    _focusedObject = objectHit.collider.GetComponent<PickupObject>();
+
+                    if (_oldFocusedObject && _oldFocusedObject.GetInstanceID() != _focusedObject.GetInstanceID())
+                    {
+                        _oldFocusedObject.GetComponent<Renderer>().material = _oldFocusedObject.normalMat;
+                    }
+
+                    _oldFocusedObject = objectHit.collider.GetComponent<PickupObject>();
+
+                    _focusedObject.GetComponent<Renderer>().material = _focusedObject.highlighted;
                 }
-                
-                _oldFocusedObject = hit.collider.GetComponent<PickupObject>();
-                
-                _focusedObject.GetComponent<Renderer>().material = _focusedObject.highlighted;
+                else
+                {
+                    if (_focusedObject)
+                    {
+                        _focusedObject.GetComponent<Renderer>().material = _focusedObject.normalMat;
+                    }
+
+                    _focusedObject = null;
+                }
+                //     // pickup position anpassen, wird an normale gesetzt
+                //     _focusedObject = objectHit.collider.GetComponent<PickupObject>();
+                // }
+                // else
+                // {
+                //     _focusedObject = null;
+                // }
             }
             else
             {
-                if (_focusedObject)
+                if (Physics.Raycast(camHolder.transform.position,
+                        camHolder.transform.TransformDirection(Vector3.forward), out objectHit, pickupDistance,
+                        objectMask))
                 {
-                    _focusedObject.GetComponent<Renderer>().material = _focusedObject.normalMat;
-                }
+                    _focusedObject = objectHit.collider.GetComponent<PickupObject>();
 
-                _focusedObject = null;
+                    if (_oldFocusedObject && _oldFocusedObject.GetInstanceID() != _focusedObject.GetInstanceID())
+                    {
+                        _oldFocusedObject.GetComponent<Renderer>().material = _oldFocusedObject.normalMat;
+                    }
+
+                    _oldFocusedObject = objectHit.collider.GetComponent<PickupObject>();
+
+                    _focusedObject.GetComponent<Renderer>().material = _focusedObject.highlighted;
+                }
+                else
+                {
+                    if (_focusedObject)
+                    {
+                        _focusedObject.GetComponent<Renderer>().material = _focusedObject.normalMat;
+                    }
+
+                    _focusedObject = null;
+                }
             }
         }
     }
