@@ -196,7 +196,7 @@ public class PlayerController : PortalableObject
         //Look
 
         lookRotation += (-look.y * sensitivity);
-        lookRotation = Mathf.Clamp(lookRotation, -90, 90);
+        lookRotation = Mathf.Clamp(lookRotation, -60, 80);
         camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y,
             camHolder.transform.eulerAngles.z);
     }
