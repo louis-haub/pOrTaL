@@ -213,13 +213,12 @@ public class PlayerController : PortalableObject
         {
             
             this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15 * Mathf.Pow(scale, 0.3f));
-            return;
         }
 
         if (grounded && this.GetComponent<Rigidbody>().velocity.magnitude > 0)
         {
                 music.playingFootsteps=true;
-                animation.Move(this.GetComponent<Rigidbody>().velocity * .5f);
+                animation.Move(new Vector3(move.x, 0, move.y));
         }
         else
         {
