@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Portal
   - PortalSurface
+  - PickObject
   layers:
   - Default
   - TransparentFX

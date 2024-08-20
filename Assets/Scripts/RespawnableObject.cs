@@ -23,7 +23,7 @@ public class RespawnableObject : MonoBehaviour
         }
     }
 
-    void Respawn()
+    public void Respawn()
     {
         this.transform.position = _startPosition;
         var rb = this.GetComponent<Rigidbody>();

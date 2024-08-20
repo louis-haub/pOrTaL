@@ -88,11 +88,14 @@ public class Portal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Portal Collider Triggered");
-        var obj = other.GetComponent<PortalableObject>();
-        if (obj != null && IsPlaced && OtherPortal.IsPlaced)
+        if (other.CompareTag("Player") || other.CompareTag("PickObject"))
         {
-            portalObjects.Add(obj);
-            obj.SetIsInPortal(this, OtherPortal, wallCollider);
+            var obj = other.GetComponent<PortalableObject>();
+            if (obj != null && IsPlaced && OtherPortal.IsPlaced)
+            {
+                portalObjects.Add(obj);
+                obj.SetIsInPortal(this, OtherPortal, wallCollider);
+            }
         }
     }
 

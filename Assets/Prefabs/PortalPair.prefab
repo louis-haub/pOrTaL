@@ -527,6 +527,7 @@ GameObject:
   - component: {fileID: 2518576685458926628}
   - component: {fileID: 1572953472477364998}
   - component: {fileID: 6031802315297357665}
+  - component: {fileID: 749685224304620980}
   m_Layer: 10
   m_Name: Portal2
   m_TagString: Portal
@@ -634,6 +635,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &749685224304620980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2490220987937853797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -223010011
+      Data2: 1107434181
+      Data3: 955782309
+      Data4: 1144554897
+    Path: event:/PortalDrop
+  Event: 
+  PlayEvent: 4
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2541535825029959456
 GameObject:
   m_ObjectHideFlags: 0
