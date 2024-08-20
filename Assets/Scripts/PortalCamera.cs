@@ -85,7 +85,6 @@ public class PortalCamera : MonoBehaviour
             relativePos = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativePos;
             relativePos *= scaleFactor;
             cameraTransform.position = outTransform.TransformPoint(relativePos);
-            Debug.DrawLine(cameraTransform.position, outTransform.position, Color.red);
 
             // Rotate the camera to look through the other portal.
             Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * cameraTransform.rotation;

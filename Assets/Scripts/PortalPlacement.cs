@@ -112,8 +112,8 @@ public class PortalPlacement : MonoBehaviour
         var wasPlaced = portals.Portals[portalId].TryPlacingPortal();
         if(wasPlaced)
         {
-            crosshair.SetPortalPlaced(portalId, true);
             music.triggerGunAudio();
         }
+        crosshair.UpdatePortalColors();
     }
 }

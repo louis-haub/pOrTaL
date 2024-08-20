@@ -83,10 +83,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Path: Assets/Audio/Portal/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
   lastModified: 638597495186524960
+=======
+  Path: Assets/Audio/Portal/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638597020047923431
+>>>>>>> 96cbf39051106b270dda38d9ce02981c4add60a7
   FileSizes:
   - Name: Desktop
     Value: 1372
@@ -185,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/BoxDrop
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Path: event:/BoxDrop
   Guid:
     Data1: -193653934
@@ -201,6 +209,17 @@ MonoBehaviour:
   MaxDistance: 20
   Length: 8000
 --- !u!114 &-70474184177488179
+=======
+  Path: Assets/Audio/Portal/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638597020047930859
+  FileSizes:
+  - Name: Desktop
+    Value: 1124
+  Exists: 1
+--- !u!114 &-5553780938174916365
+>>>>>>> 96cbf39051106b270dda38d9ce02981c4add60a7
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,6 +323,7 @@ MonoBehaviour:
     Data4: 2036196229
   Banks:
   - {fileID: -8601686375173743438}
+<<<<<<< HEAD
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -337,6 +357,13 @@ MonoBehaviour:
   Labels: []
   Exists: 1
 --- !u!114 &6934743291698529513
+=======
+  StringsBanks:
+  - {fileID: -6067335892701138172}
+  cacheTime: 638597020047930859
+  cacheVersion: 131618
+--- !u!114 &1517958941288480751
+>>>>>>> 96cbf39051106b270dda38d9ce02981c4add60a7
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
