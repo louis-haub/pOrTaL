@@ -38,6 +38,9 @@ public class PortalPlacement : MonoBehaviour
         var scaleChange = ctx.ReadValue<Vector2>();
         scale += scaleChange.y / 3000f;
         scale = Mathf.Clamp(scale, minScale, maxScale);
+        float unclampedBananaScale = banana.transform.localScale.x + scaleChange.y / 3000f;
+        float clampedBananaScale = Mathf.Clamp(unclampedBananaScale, 1f, 3f);
+        banana.transform.localScale = new Vector3(clampedBananaScale, clampedBananaScale, clampedBananaScale);
         float musicScale = Mathf.Clamp(scale, 0, 1);
         music.setSize(musicScale);
     }
