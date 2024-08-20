@@ -1103,35 +1103,11 @@ MonoBehaviour:
     m_ActionId: fb03b3d2-1892-4e91-8e1d-e69a08f52811
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2453877539727416071}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnGetBigger
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: cba6cef0-e87d-4437-ad0e-0b10e28a40ce
     m_ActionName: Player/GetBigger[/Keyboard/k]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2453877539727416071}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnGetSmaller
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 0f54558c-544c-4522-ae3b-134cef83418e
     m_ActionName: Player/GetSmaller[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1256,17 +1232,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1d182e5a4c3928a96a0615f693638f03,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d182e5a4c3928a96a0615f693638f03,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d182e5a4c3928a96a0615f693638f03,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d182e5a4c3928a96a0615f693638f03,
         type: 3}

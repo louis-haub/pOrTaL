@@ -38,7 +38,7 @@ public class MusicController : MonoBehaviour
         musicEvent.setParameterByName("Action", 0);
         musicEvent.start();
         
-        StartCoroutine(musicSetter());
+        // StartCoroutine(musicSetter());
         StartCoroutine(footsteps());
         
         
@@ -76,6 +76,11 @@ public class MusicController : MonoBehaviour
         stepEvent.release();
     }
 
+    public void setAction(float action)
+    {
+        if (action > 1f) action = 1f;
+        musicEvent.setParameterByName("Action", action);
+    }
     public void triggerLanding()
     {
         landEvent = FMODUnity.RuntimeManager.CreateInstance(landInstance);
@@ -111,16 +116,18 @@ public class MusicController : MonoBehaviour
         }
     }
 
-    IEnumerator musicSetter()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(randomActionTime);
-            //code here will execute after 5 seconds
-            float action = UnityEngine.Random.Range(0.0f, 1.0f);
-            musicEvent.setParameterByName("Action", action);
-        }
-
-    }
+    
+    
+    // IEnumerator musicSetter()
+    // {
+    //     while (true)
+    //     {
+    //         yield return new WaitForSeconds(randomActionTime);
+    //         //code here will execute after 5 seconds
+    //         float action = UnityEngine.Random.Range(0.0f, 1.0f);
+    //         musicEvent.setParameterByName("Action", action);
+    //     }
+    //
+    // }
 }
 
