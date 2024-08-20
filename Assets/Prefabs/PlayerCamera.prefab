@@ -269,4 +269,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portalReference: {fileID: 0}
   portalCamera: {fileID: 0}
-  iterations: 7
+  iterations: 3
