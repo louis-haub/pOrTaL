@@ -341,10 +341,6 @@ public class PlayerController : PortalableObject
         var normal = Vector3.Cross(transform.up, Vector3.up);
         transform.RotateAround(transform.position, normal, angle);
         var scaling = inPortal.Size / outPortal.Size;
-<<<<<<< HEAD
-        transform.localScale *= scaling;
-
-=======
         Scale(scaling);
     }
 
@@ -355,7 +351,6 @@ public class PlayerController : PortalableObject
 
         groundTest.localScale *= 1f / scale;
         groundTest.localPosition = oldGroundPos;
->>>>>>> 96cbf39051106b270dda38d9ce02981c4add60a7
     }
 
     protected override bool UseClone()
