@@ -227,10 +227,12 @@ public class PlayerController : PortalableObject
             _pickedUpObject = _focusedObject;
             joint.connectedBody = _pickedUpObject.GetComponent<Rigidbody>();
             _focusedObject = null;
+            music.triggerBoxLift();
         }
         else if (_pickedUpObject != null)
         {
             dropPickedUpObject();
+            music.triggerBoxDrop();
         }
         else
         {
@@ -339,6 +341,7 @@ public class PlayerController : PortalableObject
         transform.RotateAround(transform.position, normal, angle);
         var scaling = inPortal.Size / outPortal.Size;
         transform.localScale *= scaling;
+
     }
 
     protected override bool UseClone()

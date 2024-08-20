@@ -11,8 +11,8 @@ public class MusicController : MonoBehaviour
     public string stepInstance = "event:/Footsteps";
     public string jumpInstance = "event:/Jump";
     public string landInstance = "event:/Land";
-    public string boxLiftInstance = "event:/BoxLift";
-    public string boxDropInstance = "event:/BoxDrop";
+    public string boxDropInstance = "event:/BoxLift";
+    public string boxLiftInstance = "event:/BoxDrop";
     public string portalDropInstance = "event:/PortalDrop";
 
     FMOD.Studio.EventInstance stepEvent;
