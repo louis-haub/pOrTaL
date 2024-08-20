@@ -211,6 +211,19 @@ public class PlayerController : PortalableObject
     {
         Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.black, .1f);
 
+        if (!grounded)
+        {
+            this.GetComponent<CapsuleCollider>().material.dynamicFriction = 0;
+            this.GetComponent<CapsuleCollider>().material.staticFriction = 0;
+        }
+        else
+        {
+            
+                this.GetComponent<CapsuleCollider>().material.dynamicFriction = 100;
+                this.GetComponent<CapsuleCollider>().material.staticFriction = 100;
+            
+        }
+        
         if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
         {
             
