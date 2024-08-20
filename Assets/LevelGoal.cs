@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelGoal : MonoBehaviour
 {
+    public bool JumpToMenu = false;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -14,7 +15,14 @@ public class LevelGoal : MonoBehaviour
     private void LoadLevel()
     {
         // load the nextlevel
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (JumpToMenu)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene("Menu");
+        }
 
     }
 }
