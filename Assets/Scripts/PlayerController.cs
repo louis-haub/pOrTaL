@@ -24,6 +24,8 @@ public class PlayerController : PortalableObject
     public Transform groundTest;
     
     public float scale;
+    public float maxScale;
+    public float minScale;
     public float initialScale = 1;
     public float pickupDistance;
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
@@ -49,7 +51,10 @@ public class PlayerController : PortalableObject
     
     public void OnJump(InputAction.CallbackContext context)
     {
-        Jump();
+        if(context.started)
+        {
+            Jump();
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -182,7 +187,7 @@ public class PlayerController : PortalableObject
         Vector3 jumpForces = Vector3.zero;
         if (grounded)
         {
-            jumpForces = Vector3.up * jumpForce;
+            jumpForces = Vector3.up * jumpForce *  Mathf.Pow(scale, 0.26f);
             animation.Jump();
             music.triggerJump();
         }
@@ -197,7 +202,7 @@ public class PlayerController : PortalableObject
         //Look
 
         lookRotation += (-look.y * sensitivity);
-        lookRotation = Mathf.Clamp(lookRotation, -90, 90);
+        lookRotation = Mathf.Clamp(lookRotation, -60, 80);
         camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y,
             camHolder.transform.eulerAngles.z);
     }
@@ -209,18 +214,18 @@ public class PlayerController : PortalableObject
         if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
         {
             
-            this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15);
-            return;
+            this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15 * Mathf.Pow(scale, 0.3f));
         }
 
-        if (move.magnitude > 0 && grounded)
+        if (grounded && this.GetComponent<Rigidbody>().velocity.magnitude > 0)
         {
                 music.playingFootsteps=true;
-            }
-            else
-            {
-                music.playingFootsteps = false;
-            }
+                animation.Move(new Vector3(move.x, 0, move.y));
+        }
+        else
+        {
+            music.playingFootsteps = false;
+        }
        
         // Vector3 currentVelocity = rb.velocity;
         // Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
@@ -331,7 +336,7 @@ public class PlayerController : PortalableObject
         if (transform.localScale != previousScale)
         {
             // Update the mass based on the new scale
-            rb.SetDensity(density);
+            //rb.SetDensity(density);
             Debug.Log("current Mass" + rb.mass);
             Debug.Log("current density" + density);
 
@@ -388,12 +393,42 @@ public class PlayerController : PortalableObject
 
     private void Scale(float scale)
     {
-        var oldGroundPos = groundTest.localPosition;
-        transform.localScale *= scale;
-        this.scale *= scale;
+        if (this.scale * scale >= minScale && this.scale * scale <= maxScale)
+        {
+            var oldGroundPos = groundTest.localPosition;
+            transform.localScale *= scale;
+            this.scale *= scale;
 
-        groundTest.localScale *= 1f / scale;
+            groundTest.localScale *= 1f / scale;
+            groundTest.localPosition = oldGroundPos;
+        }
+        else
+        {
+            if (scale < 1)
+            {
+                // float actualScale = minScale / this.scale;
+                // Scale(actualScale);
+                SetScaleToValue(minScale);
+            }
+            else if (scale > 1)
+            {
+                SetScaleToValue(maxScale);
+            }
+            Debug.Log("Out of Bounds");
+        }
+    }
+
+    private void SetScaleToValue(float scale)
+    {
+        float actualScale = scale / this.scale;
+        var oldGroundPos = groundTest.localPosition;
+        // scale player
+        transform.localScale = new Vector3(scale, scale, scale);
+        // this.scale is still old
+        groundTest.localScale *= 1f / actualScale;
         groundTest.localPosition = oldGroundPos;
+        
+        this.scale = scale;
     }
 
     protected override bool UseClone()
