@@ -216,7 +216,7 @@ public class PlayerController : PortalableObject
 
     void Move()
     {
-        Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.black, .1f);
+        Debug.DrawRay(this.transform.position, rb.velocity, Color.black, .1f);
 
         if (!grounded)
         {
@@ -231,10 +231,10 @@ public class PlayerController : PortalableObject
             
         }
         
-        if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
+        if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5 * scale,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
         {
             
-            this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15 * Mathf.Pow(scale, 0.3f));
+            rb.AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15 * Mathf.Pow(scale, 0.5f));
         }
 
         if (grounded && this.GetComponent<Rigidbody>().velocity.magnitude > 0)

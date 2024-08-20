@@ -15,7 +15,7 @@ public class LevelGoal : MonoBehaviour
     private void LoadLevel()
     {
         // load the nextlevel
-        if (JumpToMenu)
+        if (!JumpToMenu)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
