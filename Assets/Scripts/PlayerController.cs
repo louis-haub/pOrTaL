@@ -168,6 +168,8 @@ public class PlayerController : PortalableObject
         _pickedUpObject.Drop();
         _pickedUpObject.GetComponent<Renderer>().material = _pickedUpObject.normalMat;
         _pickedUpObject = null;
+        music.triggerBoxDrop();
+
 
     }
     void Jump()
@@ -254,7 +256,6 @@ public class PlayerController : PortalableObject
         else if (_pickedUpObject != null)
         {
             dropPickedUpObject();
-            music.triggerBoxDrop();
         }
         else
         {
