@@ -15,6 +15,8 @@ public class PlayerController : PortalableObject
     public GameObject camHolder;
     public GameObject pickupLocation;
     public float maxPickupDistance;
+
+    private double _action =0.0;
     
     public float speed, sensitivity, density, maxForce, jumpForce;
     private Vector2 move, look;
@@ -24,6 +26,8 @@ public class PlayerController : PortalableObject
     public Transform groundTest;
     
     public float scale;
+    public float maxScale;
+    public float minScale;
     public float initialScale = 1;
     public float pickupDistance;
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
@@ -62,17 +66,22 @@ public class PlayerController : PortalableObject
 
     public void OnGetBigger(InputAction.CallbackContext context)
     {
-        Bigger();
+        //Bigger();
     }
 
     public void OnGetSmaller(InputAction.CallbackContext context)
     {
-        Smaller();
+        //Smaller();
     }
 
     private void FixedUpdate()
     {
       Move();
+      var add = this.GetComponent<Rigidbody>().velocity.magnitude *  0.0005 * (1 - (_action));
+      if(add > 0) this._action += add;
+      this._action *= 0.999;
+      this.music.setAction((float)_action);
+      Debug.Log(_action);
 
         LayerMask objectMask = LayerMask.GetMask("PickupObject");
         // Does the ray intersect any objects excluding the player layer
@@ -200,7 +209,7 @@ public class PlayerController : PortalableObject
         //Look
 
         lookRotation += (-look.y * sensitivity);
-        lookRotation = Mathf.Clamp(lookRotation, -90, 90);
+        lookRotation = Mathf.Clamp(lookRotation, -60, 80);
         camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y,
             camHolder.transform.eulerAngles.z);
     }
@@ -209,17 +218,29 @@ public class PlayerController : PortalableObject
     {
         Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.black, .1f);
 
+        if (!grounded)
+        {
+            this.GetComponent<CapsuleCollider>().material.dynamicFriction = 0;
+            this.GetComponent<CapsuleCollider>().material.staticFriction = 0;
+        }
+        else
+        {
+            
+                this.GetComponent<CapsuleCollider>().material.dynamicFriction = 100;
+                this.GetComponent<CapsuleCollider>().material.staticFriction = 100;
+            
+        }
+        
         if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
         {
             
             this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15 * Mathf.Pow(scale, 0.3f));
-            return;
         }
 
         if (grounded && this.GetComponent<Rigidbody>().velocity.magnitude > 0)
         {
                 music.playingFootsteps=true;
-                animation.Move(this.GetComponent<Rigidbody>().velocity * .5f);
+                animation.Move(new Vector3(move.x, 0, move.y));
         }
         else
         {
@@ -392,13 +413,42 @@ public class PlayerController : PortalableObject
 
     private void Scale(float scale)
     {
-        this.scale *= scale;
-        var oldGroundPos = groundTest.localPosition;
-        transform.localScale *= scale;
-        this.scale *= scale;
+        if (this.scale * scale >= minScale && this.scale * scale <= maxScale)
+        {
+            var oldGroundPos = groundTest.localPosition;
+            transform.localScale *= scale;
+            this.scale *= scale;
 
-        groundTest.localScale *= 1f / scale;
+            groundTest.localScale *= 1f / scale;
+            groundTest.localPosition = oldGroundPos;
+        }
+        else
+        {
+            if (scale < 1)
+            {
+                // float actualScale = minScale / this.scale;
+                // Scale(actualScale);
+                SetScaleToValue(minScale);
+            }
+            else if (scale > 1)
+            {
+                SetScaleToValue(maxScale);
+            }
+            Debug.Log("Out of Bounds");
+        }
+    }
+
+    private void SetScaleToValue(float scale)
+    {
+        float actualScale = scale / this.scale;
+        var oldGroundPos = groundTest.localPosition;
+        // scale player
+        transform.localScale = new Vector3(scale, scale, scale);
+        // this.scale is still old
+        groundTest.localScale *= 1f / actualScale;
         groundTest.localPosition = oldGroundPos;
+        
+        this.scale = scale;
     }
 
     protected override bool UseClone()
