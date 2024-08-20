@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public string firstScene;
+    
     public void Play()
     {
-        Debug.Log("Play");
+        SceneManager.LoadScene(firstScene);
     }
 
     public void Options()
@@ -21,6 +24,6 @@ public class Menu : MonoBehaviour
 
     public void Exit()
     {
-        
+        Application.Quit();
     }
 }

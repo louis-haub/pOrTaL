@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OtherPortal>k__BackingField: {fileID: 1572953472477364998}
   outlineRenderer: {fileID: 8599242333232128367}
-  <PortalColour>k__BackingField: {r: 0, g: 0.19907331, b: 1, a: 0}
+  <PortalColour>k__BackingField: {r: 1, g: 0.88235295, b: 0, a: 0}
   placementMask:
     serializedVersion: 2
     m_Bits: 1536
@@ -154,6 +154,7 @@ MonoBehaviour:
   <Size>k__BackingField: 1
   Renderer: {fileID: 3121445090998773754}
   outline: {fileID: 3971108788756874130}
+  startEnabled: 0
 --- !u!65 &6398888797891741593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -597,7 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OtherPortal>k__BackingField: {fileID: 8881527850355782229}
   outlineRenderer: {fileID: 1905481213142929613}
-  <PortalColour>k__BackingField: {r: 0, g: 0.19907331, b: 1, a: 0}
+  <PortalColour>k__BackingField: {r: 0, g: 0.2, b: 1, a: 0}
   placementMask:
     serializedVersion: 2
     m_Bits: 1536
@@ -605,6 +606,7 @@ MonoBehaviour:
   <Size>k__BackingField: 1
   Renderer: {fileID: 6615341465042295265}
   outline: {fileID: 6517678638508701312}
+  startEnabled: 0
 --- !u!54 &6031802315297357665
 Rigidbody:
   m_ObjectHideFlags: 0
