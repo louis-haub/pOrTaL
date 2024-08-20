@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,19 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
+        
         playerController.SetGrounded(true);
     }
-    
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject == playerController.gameObject)
+        {
+            return;
+        }
+        playerController.SetGrounded(true);
+    }
+
     void OnTriggerExit(Collider other)
     {
         
