@@ -15,6 +15,8 @@ public class PlayerController : PortalableObject
     public GameObject camHolder;
     public GameObject pickupLocation;
     public float maxPickupDistance;
+
+    private double _action =0.0;
     
     public float speed, sensitivity, density, maxForce, jumpForce;
     private Vector2 move, look;
@@ -75,6 +77,11 @@ public class PlayerController : PortalableObject
     private void FixedUpdate()
     {
       Move();
+      var add = this.GetComponent<Rigidbody>().velocity.magnitude *  0.0005 * (1 - (_action));
+      if(add > 0) this._action += add;
+      this._action *= 0.999;
+      this.music.setAction((float)_action);
+      Debug.Log(_action);
 
         LayerMask objectMask = LayerMask.GetMask("PickupObject");
         // Does the ray intersect any objects excluding the player layer
