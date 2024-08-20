@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -67,17 +68,24 @@ public class PlayerController : PortalableObject
 
     private void FixedUpdate()
     {
-        Move();
+      Move();
 
-        RaycastHit objectHit;
-        // add ray for picking up objects
         LayerMask objectMask = LayerMask.GetMask("PickupObject");
         // Does the ray intersect any objects excluding the player layer
         if (_pickedUpObject == null)
         {
+            bool wasObjectHit = Physics.Raycast(camHolder.transform.position,
+                camHolder.transform.TransformDirection(Vector3.forward), out var objectHit, pickupDistance * scale,
+                objectMask);
+            bool wasPortalHit = Physics.Raycast(camHolder.transform.position,
+                camHolder.transform.TransformDirection(Vector3.forward),
+                out var portalHit, pickupDistance * scale, LayerMask.GetMask("PortalSurface"));
+            bool noObjectBetweenPlayerAndPortal = (wasObjectHit && wasPortalHit)
+                ? (portalHit.distance < objectHit.distance)
+                : wasPortalHit && !wasObjectHit;
+            
             // check if portal focused
-            if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward),
-                    out var portalHit, pickupDistance, LayerMask.GetMask("PortalSurface")))
+            if (noObjectBetweenPlayerAndPortal)
             {
                 var distance = portalHit.distance;
                 inPortal = portalHit.collider.GetComponentInParent<Portal>();
@@ -93,7 +101,7 @@ public class PlayerController : PortalableObject
                 var newDirection = outTransform.TransformDirection(relativeDir);
 
                 // cast ray with remaining distance from other portal
-                if (Physics.Raycast(newOrigin, newDirection, out objectHit, pickupDistance - distance, objectMask))
+                if (Physics.Raycast(newOrigin, newDirection, out objectHit, (pickupDistance * scale) - distance, objectMask))
                 {
                     _focusedObject = objectHit.collider.GetComponent<PickupObject>();
 
@@ -125,9 +133,7 @@ public class PlayerController : PortalableObject
             }
             else
             {
-                if (Physics.Raycast(camHolder.transform.position,
-                        camHolder.transform.TransformDirection(Vector3.forward), out objectHit, pickupDistance,
-                        objectMask))
+                if (wasObjectHit)
                 {
                     _focusedObject = objectHit.collider.GetComponent<PickupObject>();
 
@@ -160,13 +166,14 @@ public class PlayerController : PortalableObject
         }
     }
 
-    private void dropPickedUpObject()
+    public void dropPickedUpObject()
     {
-        
         joint.connectedBody = null;
         _pickedUpObject.Drop();
         _pickedUpObject.GetComponent<Renderer>().material = _pickedUpObject.normalMat;
         _pickedUpObject = null;
+        music.triggerBoxDrop();
+
 
     }
     void Jump()
@@ -196,27 +203,46 @@ public class PlayerController : PortalableObject
 
     void Move()
     {
-        Vector3 currentVelocity = rb.velocity;
-        Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
-        targetVelocity *= speed;
+        Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.black, .1f);
 
-        animation.Move(targetVelocity);
-        targetVelocity = transform.TransformDirection(targetVelocity);
-        
-        Vector3 velocityChange = (targetVelocity - currentVelocity);
-        velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
-        //Limit force
-        Vector3.ClampMagnitude(velocityChange, maxForce);
-        rb.AddForce(velocityChange, ForceMode.VelocityChange);
-        //Check if movement is horizontal:
-        if(Mathf.Abs(move.x)> threshold || Mathf.Abs(move.y) > threshold)
+        if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
         {
-            music.playingFootsteps=true;
+            
+            this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15);
+            return;
         }
-        else
+
+        if (move.magnitude > 0 && grounded)
         {
-            music.playingFootsteps = false;
-        }
+                music.playingFootsteps=true;
+            }
+            else
+            {
+                music.playingFootsteps = false;
+            }
+       
+        // Vector3 currentVelocity = rb.velocity;
+        // Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
+        // targetVelocity *= speed;
+        //
+        // animation.Move(targetVelocity);
+        // targetVelocity = transform.TransformDirection(targetVelocity);
+        //
+        // Vector3 velocityChange = (targetVelocity - currentVelocity);
+        // velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
+        // //Limit force
+        // Vector3.ClampMagnitude(velocityChange, maxForce);
+        // rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        // //Check if movement is horizontal:
+        // // Debug.Log(move);
+        // if(Mathf.Abs(move.x)> threshold || Mathf.Abs(move.y) > threshold)
+        // {
+        //     music.playingFootsteps=true;
+        // }
+        // else
+        // {
+        //     music.playingFootsteps = false;
+        // }
         
     }
 
@@ -225,6 +251,7 @@ public class PlayerController : PortalableObject
         if (_pickedUpObject == null && _focusedObject != null)
         {
             _focusedObject.Pickup(camHolder.transform, pickupLocation.transform, joint.transform);
+            _focusedObject.playerController = this;
             _pickedUpObject = _focusedObject;
             joint.connectedBody = _pickedUpObject.GetComponent<Rigidbody>();
             _focusedObject = null;
@@ -233,7 +260,6 @@ public class PlayerController : PortalableObject
         else if (_pickedUpObject != null)
         {
             dropPickedUpObject();
-            music.triggerBoxDrop();
         }
         else
         {
@@ -333,21 +359,36 @@ public class PlayerController : PortalableObject
         grounded = state;
 
     }
-    
+
+    public void OnCollisionEnter(Collision other)
+    {
+        print(other.gameObject.name);
+    }
+
     public override void Warp()
     {
+        Debug.Log(this.GetComponent<Rigidbody>().velocity);
         base.Warp();
+        Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.cyan, 10f);
         var angle = Vector3.Angle(transform.up, Vector3.up);
         var normal = Vector3.Cross(transform.up, Vector3.up);
         transform.RotateAround(transform.position, normal, angle);
+        Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.cyan, 10f);
+    
+        //this.GetComponent<Rigidbody>().velocity = this.transform.InverseTransformDirection(global_velocity);
         var scaling = inPortal.Size / outPortal.Size;
         Scale(scaling);
+        Debug.DrawRay(this.transform.position, this.GetComponent <Rigidbody> ().velocity, Color.green, 10f);
+    
+        Collider col = player.GetComponent<Collider>();
+        
     }
 
     private void Scale(float scale)
     {
         var oldGroundPos = groundTest.localPosition;
         transform.localScale *= scale;
+        this.scale *= scale;
 
         groundTest.localScale *= 1f / scale;
         groundTest.localPosition = oldGroundPos;

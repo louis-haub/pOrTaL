@@ -1003,7 +1003,7 @@ MonoBehaviour:
   grounded: 0
   groundTest: {fileID: 2484396704306151661}
   scale: 1
-  pickupDistance: 4
+  pickupDistance: 3
   music: {fileID: 6756892762769205336}
 --- !u!114 &8369315066209963731
 MonoBehaviour:
