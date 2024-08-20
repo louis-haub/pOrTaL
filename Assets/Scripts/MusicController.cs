@@ -11,11 +11,18 @@ public class MusicController : MonoBehaviour
     public string stepInstance = "event:/Footsteps";
     public string jumpInstance = "event:/Jump";
     public string landInstance = "event:/Land";
+    public string boxLiftInstance = "event:/BoxLift";
+    public string boxDropInstance = "event:/BoxDrop";
+    public string portalDropInstance = "event:/PortalDrop";
+
     FMOD.Studio.EventInstance stepEvent;
     FMOD.Studio.EventInstance gunEvent;
     FMOD.Studio.EventInstance musicEvent;
     FMOD.Studio.EventInstance landEvent;
     FMOD.Studio.EventInstance jumpEvent;
+    FMOD.Studio.EventInstance boxDropEvent;
+    FMOD.Studio.EventInstance boxLiftEvent;
+    FMOD.Studio.EventInstance portalDropEvent;
     public bool playingFootsteps = false;
     private float footstepDistanceTime = 0.5f;
 
@@ -35,6 +42,24 @@ public class MusicController : MonoBehaviour
         StartCoroutine(footsteps());
         
         
+    }
+    public void triggerBoxLift()
+    {
+        boxLiftEvent = FMODUnity.RuntimeManager.CreateInstance(boxLiftInstance);
+        boxLiftEvent.start();
+        boxLiftEvent.release();
+    }
+    public void triggerBoxDrop()
+    {
+        boxDropEvent = FMODUnity.RuntimeManager.CreateInstance(boxDropInstance);
+        boxDropEvent.start();
+        boxDropEvent.release();
+    }
+    public void triggerPortalDrop()
+    {
+        portalDropEvent = FMODUnity.RuntimeManager.CreateInstance(portalDropInstance);
+        portalDropEvent.start();
+        portalDropEvent.release();
     }
     public void triggerGunAudio()
     {

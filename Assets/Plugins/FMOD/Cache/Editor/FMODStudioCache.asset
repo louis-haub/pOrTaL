@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/Portal/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638597475874434453
+  lastModified: 638597485941457427
   FileSizes:
   - Name: Desktop
-    Value: 6593440
+    Value: 6693568
   Exists: 1
 --- !u!114 &-7312350438392322710
 MonoBehaviour:
@@ -86,10 +86,10 @@ MonoBehaviour:
   Path: Assets/Audio/Portal/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638597475874524463
+  lastModified: 638597485941567636
   FileSizes:
   - Name: Desktop
-    Value: 1240
+    Value: 1372
   Exists: 1
 --- !u!114 &-6056827161439295772
 MonoBehaviour:
@@ -173,6 +173,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12304
+--- !u!114 &-2672705569048941177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BoxDrop
+  m_EditorClassIdentifier: 
+  Path: event:/BoxDrop
+  Guid:
+    Data1: -193653934
+    Data2: 1273860209
+    Data3: -981332561
+    Data4: -154406206
+  Banks:
+  - {fileID: -8601686375173743438}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
+--- !u!114 &-70474184177488179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PortalDrop
+  m_EditorClassIdentifier: 
+  Path: event:/PortalDrop
+  Guid:
+    Data1: -223010011
+    Data2: 1107434181
+    Data3: 955782309
+    Data4: 1144554897
+  Banks:
+  - {fileID: -8601686375173743438}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,12 +250,15 @@ MonoBehaviour:
   - {fileID: 6934743291698529513}
   - {fileID: -2830853397953080973}
   - {fileID: 2971944852909899610}
+  - {fileID: -70474184177488179}
+  - {fileID: -2672705569048941177}
+  - {fileID: 7086698745546824295}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8601686375173743438}
   StringsBanks:
   - {fileID: -6067335892701138172}
-  cacheTime: 638597475874524463
+  cacheTime: 638597485941567636
   cacheVersion: 131618
 --- !u!114 &265247746155601155
 MonoBehaviour:
@@ -306,6 +363,33 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &7086698745546824295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BoxLift
+  m_EditorClassIdentifier: 
+  Path: event:/BoxLift
+  Guid:
+    Data1: -241298851
+    Data2: 1210396534
+    Data3: 1035131837
+    Data4: -481949369
+  Banks:
+  - {fileID: -8601686375173743438}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
 --- !u!114 &9047903404929584835
 MonoBehaviour:
   m_ObjectHideFlags: 0
