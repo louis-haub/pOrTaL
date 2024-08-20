@@ -22,8 +22,9 @@ public class PlayerController : PortalableObject
     private float lookRotation;
     public bool grounded;
     public Transform groundTest;
-
+    
     public float scale;
+    public float initialScale = 1;
     public float pickupDistance;
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
     private PickupObject _focusedObject;
@@ -48,7 +49,10 @@ public class PlayerController : PortalableObject
     
     public void OnJump(InputAction.CallbackContext context)
     {
-        Jump();
+        if(context.started)
+        {
+            Jump();
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -181,7 +185,7 @@ public class PlayerController : PortalableObject
         Vector3 jumpForces = Vector3.zero;
         if (grounded)
         {
-            jumpForces = Vector3.up * jumpForce;
+            jumpForces = Vector3.up * jumpForce *  Mathf.Pow(scale, 0.26f);
             animation.Jump();
             music.triggerJump();
         }
@@ -208,18 +212,19 @@ public class PlayerController : PortalableObject
         if ( Vector3.Dot(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 5,this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) - Vector3.Dot(this.GetComponent<Rigidbody>().velocity, this.transform.TransformDirection(new Vector3(move.x, 0, move.y))) > 0)
         {
             
-            this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15);
+            this.GetComponent<Rigidbody>().AddForce(this.transform.TransformDirection(new Vector3(move.x, 0, move.y)) * 15 * Mathf.Pow(scale, 0.3f));
             return;
         }
 
-        if (move.magnitude > 0 && grounded)
+        if (grounded && this.GetComponent<Rigidbody>().velocity.magnitude > 0)
         {
                 music.playingFootsteps=true;
-            }
-            else
-            {
-                music.playingFootsteps = false;
-            }
+                animation.Move(this.GetComponent<Rigidbody>().velocity * .5f);
+        }
+        else
+        {
+            music.playingFootsteps = false;
+        }
        
         // Vector3 currentVelocity = rb.velocity;
         // Vector3 targetVelocity = new Vector3(move.x, 0, move.y);
@@ -285,6 +290,7 @@ public class PlayerController : PortalableObject
         previousScale = transform.localScale;
         joint = GetComponentInChildren<SpringJoint>();
         animation = GetComponentInChildren<AnimationHandler>();
+        Scale(initialScale);
     }
 
     void SetObjectMass(float mass)
@@ -329,7 +335,7 @@ public class PlayerController : PortalableObject
         if (transform.localScale != previousScale)
         {
             // Update the mass based on the new scale
-            rb.SetDensity(density);
+            //rb.SetDensity(density);
             Debug.Log("current Mass" + rb.mass);
             Debug.Log("current density" + density);
 
@@ -386,6 +392,7 @@ public class PlayerController : PortalableObject
 
     private void Scale(float scale)
     {
+        this.scale *= scale;
         var oldGroundPos = groundTest.localPosition;
         transform.localScale *= scale;
         this.scale *= scale;
