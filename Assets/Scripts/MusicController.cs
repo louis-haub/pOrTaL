@@ -54,6 +54,7 @@ public class MusicController : MonoBehaviour
     public void triggerLanding()
     {
         landEvent = FMODUnity.RuntimeManager.CreateInstance(landInstance);
+        landEvent.setParameterByName("Size", size);
         landEvent.start();
         landEvent.release();
 
