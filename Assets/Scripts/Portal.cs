@@ -36,6 +36,9 @@ public class Portal : MonoBehaviour
 
     public GameObject outline;
 
+    public bool startEnabled = false;
+    private static readonly int OutlineColour = Shader.PropertyToID("_OutlineColour");
+
     private void Awake()
     {
         collider = GetComponent<BoxCollider>();
@@ -44,9 +47,13 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
-        outlineRenderer.material.SetColor("_OutlineColour", PortalColour);
+        outlineRenderer.material.SetColor(OutlineColour, PortalColour);
 
-        gameObject.SetActive(false);
+        gameObject.SetActive(startEnabled);
+        if (startEnabled)
+        {
+            Place();
+        }
     }
 
     private void Update()
@@ -130,10 +137,7 @@ public class Portal : MonoBehaviour
         IsPreview = false;
         if (preview.Valid)
         {
-            IsPlaced = true;
-            preview.Hide();
-            outline.SetActive(true);
-            transform.position -= transform.forward * 0.001f;
+            Place();
             return true;
         }
         else
@@ -142,6 +146,14 @@ public class Portal : MonoBehaviour
             gameObject.SetActive(false);
             return false;
         }
+    }
+
+    public void Place()
+    {
+        IsPlaced = true;
+        preview.Hide();
+        outline.SetActive(true);
+        transform.position -= transform.forward * 0.001f;
     }
 
     public void RemovePortal()
