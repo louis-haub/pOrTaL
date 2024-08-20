@@ -70,15 +70,22 @@ public class PlayerController : PortalableObject
     {
       Move();
 
-        RaycastHit objectHit;
-        // add ray for picking up objects
         LayerMask objectMask = LayerMask.GetMask("PickupObject");
         // Does the ray intersect any objects excluding the player layer
         if (_pickedUpObject == null)
         {
+            bool wasObjectHit = Physics.Raycast(camHolder.transform.position,
+                camHolder.transform.TransformDirection(Vector3.forward), out var objectHit, pickupDistance * scale,
+                objectMask);
+            bool wasPortalHit = Physics.Raycast(camHolder.transform.position,
+                camHolder.transform.TransformDirection(Vector3.forward),
+                out var portalHit, pickupDistance * scale, LayerMask.GetMask("PortalSurface"));
+            bool noObjectBetweenPlayerAndPortal = (wasObjectHit && wasPortalHit)
+                ? (portalHit.distance < objectHit.distance)
+                : wasPortalHit && !wasObjectHit;
+            
             // check if portal focused
-            if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward),
-                    out var portalHit, pickupDistance * scale, LayerMask.GetMask("PortalSurface")))
+            if (noObjectBetweenPlayerAndPortal)
             {
                 var distance = portalHit.distance;
                 inPortal = portalHit.collider.GetComponentInParent<Portal>();
@@ -126,9 +133,7 @@ public class PlayerController : PortalableObject
             }
             else
             {
-                if (Physics.Raycast(camHolder.transform.position,
-                        camHolder.transform.TransformDirection(Vector3.forward), out objectHit, pickupDistance * scale,
-                        objectMask))
+                if (wasObjectHit)
                 {
                     _focusedObject = objectHit.collider.GetComponent<PickupObject>();
 
@@ -163,7 +168,6 @@ public class PlayerController : PortalableObject
 
     public void dropPickedUpObject()
     {
-        
         joint.connectedBody = null;
         _pickedUpObject.Drop();
         _pickedUpObject.GetComponent<Renderer>().material = _pickedUpObject.normalMat;

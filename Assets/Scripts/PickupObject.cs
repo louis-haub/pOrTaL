@@ -43,11 +43,11 @@ public class PickupObject : PortalableObject
         bool wasPortalHit = Physics.Raycast(parentTransform.position, direction, out var portalHit, 100,
             LayerMask.GetMask("PortalSurface"));
         
-        bool normal = (wasObjectHit && wasPortalHit)
+        bool noObjectBetweenPlayerAndPortal = (wasObjectHit && wasPortalHit)
             ? (portalHit.distance < objectHit.distance)
             : wasPortalHit && !wasObjectHit;
         
-        Vector3 newJoint = normal ? getWarpedJointPosition(): targetTransform.position;
+        Vector3 newJoint = noObjectBetweenPlayerAndPortal ? getWarpedJointPosition(): targetTransform.position;
         // if object picked up through portal
         if (newJoint != joint.position)
         {
