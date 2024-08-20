@@ -176,8 +176,10 @@ public class PlayerController : PortalableObject
         {
             jumpForces = Vector3.up * jumpForce;
             animation.Jump();
+            music.triggerJump();
         }
         rb.AddForce(jumpForces,ForceMode.VelocityChange);
+        
     }
 
     void Look()
@@ -207,7 +209,6 @@ public class PlayerController : PortalableObject
         Vector3.ClampMagnitude(velocityChange, maxForce);
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
         //Check if movement is horizontal:
-        Debug.Log(move);
         if(Mathf.Abs(move.x)> threshold || Mathf.Abs(move.y) > threshold)
         {
             music.playingFootsteps=true;
@@ -227,10 +228,12 @@ public class PlayerController : PortalableObject
             _pickedUpObject = _focusedObject;
             joint.connectedBody = _pickedUpObject.GetComponent<Rigidbody>();
             _focusedObject = null;
+            music.triggerBoxLift();
         }
         else if (_pickedUpObject != null)
         {
             dropPickedUpObject();
+            music.triggerBoxDrop();
         }
         else
         {
@@ -324,8 +327,11 @@ public class PlayerController : PortalableObject
         if (state && !grounded)
         {
             animation.Land();
+            music.triggerLanding();
+            music.triggerFootstep();
         }
         grounded = state;
+
     }
     
     public override void Warp()

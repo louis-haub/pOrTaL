@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Level2.unity.meta
 guid: ab1f2f0f6a21c4fecbb4fc23730cf4ec
 DefaultImporter:
+========
+guid: 624aa29238c0a944fbb6b8d7321aeaf7
+TextScriptImporter:
+>>>>>>>> ec52e8969a987aa67d4aa471025c97b0ec0e1cf8:Assets/Audio/Portal/Metadata/AudioFile/{1448ecd2-1c60-49e1-a303-ebd11b4b5de8}.xml.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
