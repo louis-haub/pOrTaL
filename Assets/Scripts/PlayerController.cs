@@ -64,12 +64,12 @@ public class PlayerController : PortalableObject
 
     public void OnGetBigger(InputAction.CallbackContext context)
     {
-        Bigger();
+        //Bigger();
     }
 
     public void OnGetSmaller(InputAction.CallbackContext context)
     {
-        Smaller();
+        //Smaller();
     }
 
     private void FixedUpdate()
