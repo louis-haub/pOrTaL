@@ -24,6 +24,8 @@ public class PlayerController : PortalableObject
     public Transform groundTest;
     
     public float scale;
+    public float maxScale;
+    public float minScale;
     public float initialScale = 1;
     public float pickupDistance;
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
@@ -392,13 +394,42 @@ public class PlayerController : PortalableObject
 
     private void Scale(float scale)
     {
-        this.scale *= scale;
-        var oldGroundPos = groundTest.localPosition;
-        transform.localScale *= scale;
-        this.scale *= scale;
+        if (this.scale * scale >= minScale && this.scale * scale <= maxScale)
+        {
+            var oldGroundPos = groundTest.localPosition;
+            transform.localScale *= scale;
+            this.scale *= scale;
 
-        groundTest.localScale *= 1f / scale;
+            groundTest.localScale *= 1f / scale;
+            groundTest.localPosition = oldGroundPos;
+        }
+        else
+        {
+            if (scale < 1)
+            {
+                // float actualScale = minScale / this.scale;
+                // Scale(actualScale);
+                SetScaleToValue(minScale);
+            }
+            else if (scale > 1)
+            {
+                SetScaleToValue(maxScale);
+            }
+            Debug.Log("Out of Bounds");
+        }
+    }
+
+    private void SetScaleToValue(float scale)
+    {
+        float actualScale = scale / this.scale;
+        var oldGroundPos = groundTest.localPosition;
+        // scale player
+        transform.localScale = new Vector3(scale, scale, scale);
+        // this.scale is still old
+        groundTest.localScale *= 1f / actualScale;
         groundTest.localPosition = oldGroundPos;
+        
+        this.scale = scale;
     }
 
     protected override bool UseClone()
