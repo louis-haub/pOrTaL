@@ -867,6 +867,8 @@ MonoBehaviour:
   grounded: 0
   groundTest: {fileID: 2484396704306151661}
   scale: 1
+  maxScale: 4
+  minScale: 0.25
   initialScale: 1
   pickupDistance: 3
   music: {fileID: 6756892762769205336}
