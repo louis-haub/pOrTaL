@@ -78,7 +78,7 @@ public class PlayerController : PortalableObject
         {
             // check if portal focused
             if (Physics.Raycast(camHolder.transform.position, camHolder.transform.TransformDirection(Vector3.forward),
-                    out var portalHit, pickupDistance, LayerMask.GetMask("PortalSurface")))
+                    out var portalHit, pickupDistance * scale, LayerMask.GetMask("PortalSurface")))
             {
                 var distance = portalHit.distance;
                 inPortal = portalHit.collider.GetComponentInParent<Portal>();
@@ -94,7 +94,7 @@ public class PlayerController : PortalableObject
                 var newDirection = outTransform.TransformDirection(relativeDir);
 
                 // cast ray with remaining distance from other portal
-                if (Physics.Raycast(newOrigin, newDirection, out objectHit, pickupDistance - distance, objectMask))
+                if (Physics.Raycast(newOrigin, newDirection, out objectHit, (pickupDistance * scale) - distance, objectMask))
                 {
                     _focusedObject = objectHit.collider.GetComponent<PickupObject>();
 
@@ -127,7 +127,7 @@ public class PlayerController : PortalableObject
             else
             {
                 if (Physics.Raycast(camHolder.transform.position,
-                        camHolder.transform.TransformDirection(Vector3.forward), out objectHit, pickupDistance,
+                        camHolder.transform.TransformDirection(Vector3.forward), out objectHit, pickupDistance * scale,
                         objectMask))
                 {
                     _focusedObject = objectHit.collider.GetComponent<PickupObject>();
@@ -161,7 +161,7 @@ public class PlayerController : PortalableObject
         }
     }
 
-    private void dropPickedUpObject()
+    public void dropPickedUpObject()
     {
         
         joint.connectedBody = null;
@@ -245,6 +245,7 @@ public class PlayerController : PortalableObject
         if (_pickedUpObject == null && _focusedObject != null)
         {
             _focusedObject.Pickup(camHolder.transform, pickupLocation.transform, joint.transform);
+            _focusedObject.playerController = this;
             _pickedUpObject = _focusedObject;
             joint.connectedBody = _pickedUpObject.GetComponent<Rigidbody>();
             _focusedObject = null;
@@ -382,6 +383,7 @@ public class PlayerController : PortalableObject
     {
         var oldGroundPos = groundTest.localPosition;
         transform.localScale *= scale;
+        this.scale *= scale;
 
         groundTest.localScale *= 1f / scale;
         groundTest.localPosition = oldGroundPos;
