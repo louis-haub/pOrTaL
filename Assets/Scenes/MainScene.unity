@@ -1230,7 +1230,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6473949519959315727}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219908140}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61dfc935732942c47be36c54c740138e, type: 3}
@@ -1472,6 +1472,16 @@ PrefabInstance:
     - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
         type: 3}
       propertyPath: minSize
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: maxScale
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453877539727416071, guid: 64b2758e4de43b74e84eb8dfca15469d,
+        type: 3}
+      propertyPath: minScale
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3723966269425299010, guid: 64b2758e4de43b74e84eb8dfca15469d,
