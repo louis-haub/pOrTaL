@@ -22,8 +22,9 @@ public class PlayerController : PortalableObject
     private float lookRotation;
     public bool grounded;
     public Transform groundTest;
-
+    
     public float scale;
+    public float initialScale = 1;
     public float pickupDistance;
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
     private PickupObject _focusedObject;
@@ -285,6 +286,7 @@ public class PlayerController : PortalableObject
         previousScale = transform.localScale;
         joint = GetComponentInChildren<SpringJoint>();
         animation = GetComponentInChildren<AnimationHandler>();
+        Scale(initialScale);
     }
 
     void SetObjectMass(float mass)
