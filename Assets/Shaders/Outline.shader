@@ -51,7 +51,7 @@ Shader "Portals/Outline"
 
             float4 frag (v2f i) : SV_Target
             {
-                return _OutlineColour * float4(32,32,32,1);
+                return _OutlineColour * float4(16,16,60,1);
             }
             ENDHLSL
         }

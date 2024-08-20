@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 
 public class RespawnableObject : MonoBehaviour
 {
-    private readonly float _respawnHeight = -100;
+    private readonly float _respawnHeightDown = -100;
+    private readonly float _respawnHeightUp = 500;
     private Vector3 _startPosition;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class RespawnableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.position.y < _respawnHeight)
+        if (this.transform.position.y < _respawnHeightDown)
         {
             Respawn();
         }
